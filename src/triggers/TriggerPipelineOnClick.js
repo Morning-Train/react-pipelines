@@ -20,11 +20,11 @@ function TriggerPipelineOnClick({ children }) {
   };
 
   return (
-    <>
+    <React.Fragment>
       {React.Children.map(children, (child) => (
         React.cloneElement(child, { onClick: (e) => handleClick(e), disabled: isPiping })
       ))}
-    </>
+    </React.Fragment>
   );
 }
 

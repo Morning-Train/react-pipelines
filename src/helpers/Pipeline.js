@@ -1,8 +1,9 @@
 import React from 'react';
 import { observable } from 'mobx';
 import PipelineContext from '../contexts/PipelineContext';
+import sequentialPipelineTrigger from '../utilities/sequentialPipelineTrigger';
 
-function Pipeline(props) {
+function Pipeline({ children }) {
   const isPipingRef = React.useRef(observable.box());
 
   const pipesRef = React.useRef({});
@@ -31,36 +32,27 @@ function Pipeline(props) {
     }
   };
 
-  pipeline.trigger = (payload = {}) => new Promise((resolve, reject) => {
+  pipeline.trigger = React.useCallback((payload = {}) => {
     isPipingRef.current.set(true);
 
-    let promise = Promise.resolve(payload);
-
-    if (pipesOrder.length > 0) {
-      pipesOrder.forEach((pipeUuid) => {
-        promise = promise.then((payload) => {
-          const pipe = pipes[pipeUuid];
-          return (typeof (pipe) === 'function') ? pipe(payload) : pipe;
+    return new Promise((resolve, reject) => {
+      sequentialPipelineTrigger(pipesOrder, pipes)(payload)
+        .then((p) => {
+          isPipingRef.current.set(false);
+          resolve(p);
+        })
+        .catch((err) => {
+          isPipingRef.current.set(false);
+          reject(err);
         });
-      });
-    }
-
-    promise
-      .then((payload) => {
-        isPipingRef.current.set(false);
-        resolve(payload);
-      })
-      .catch((err) => {
-        isPipingRef.current.set(false);
-        reject(err);
-      });
-  });
+    });
+  }, [pipesOrder, pipes]);
 
   pipeline.isPiping = isPipingRef.current;
 
   return (
     <PipelineContext.Provider value={pipeline}>
-      {props.children}
+      {children}
     </PipelineContext.Provider>
   );
 }
