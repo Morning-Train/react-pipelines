@@ -1,0 +1,55 @@
+{
+    "name": "@morningtrain/react-pipelines",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "test": "cross-env CI=1 react-scripts test --env=jsdom",
+        "lint": "eslint --ext .js,.jsx ./src",
+        "lint-fix": "eslint --fix --ext .js,.jsx ./src",
+        "coverage": "cross-env CI=1 react-scripts test --coverage --env=jsdom",
+        "build": "rollup -c",
+        "start": "rollup -c -w",
+        "prepare": "npm run build",
+        "predeploy": "cd example && npm install && npm run build"
+    },
+    "main": "dist/cjs/index.js",
+    "module": "dist/es/index.js",
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "react": "^16.14.0",
+        "prop-types": "^15.7.2",
+        "mobx": "^4.0.0",
+        "lodash": "^4.17.20"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.10.3",
+        "@babel/plugin-external-helpers": "^7.10.4",
+        "@babel/register": "^7.10.3",
+        "@morningtrain/babel-preset": "^1.0.3",
+        "@rollup/plugin-babel": "^5.0.4",
+        "@rollup/plugin-commonjs": "^13.0.0",
+        "@rollup/plugin-node-resolve": "^8.1.0",
+        "@rollup/plugin-url": "^5.0.1",
+        "babel-eslint": "^10.1.0",
+        "cross-env": "^5.1.4",
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.2",
+        "eslint": "^7.15.0",
+        "eslint-config-airbnb": "^18.2.1",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-react": "^7.21.5",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "jest-enzyme": "^7.1.2",
+        "react-dom": "^16.14.0",
+        "react-scripts": "^1.1.4",
+        "react-test-renderer": "^16.14.0",
+        "rollup": "^2.35.1",
+        "rollup-plugin-auto-external": "^2.0.0",
+        "rollup-plugin-postcss": "^4.0.0"
+    },
+    "files": [
+        "dist"
+    ]
+}
