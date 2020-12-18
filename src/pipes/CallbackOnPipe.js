@@ -5,8 +5,8 @@ import useWillPipe from '../hooks/use-will-pipe';
 function CallbackOnPipe({ callback }) {
   useWillPipe((payload) => new Promise((resolve, reject) => {
     Promise.resolve(callback(payload))
-      .then((p) => {
-        resolve(p);
+      .then((p = {}) => {
+        resolve({ ...payload, ...p });
       })
       .catch((err) => {
         reject(err);
