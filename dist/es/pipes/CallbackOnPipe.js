@@ -6,8 +6,8 @@ function CallbackOnPipe(_ref) {
   var callback = _ref.callback;
   useWillPipe(function (payload) {
     return new Promise(function (resolve, reject) {
-      Promise.resolve(callback(payload)).then(function () {
-        resolve(payload);
+      Promise.resolve(callback(payload)).then(function (p) {
+        resolve(p);
       }).catch(function (err) {
         reject(err);
       });

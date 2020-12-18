@@ -1,8 +1,10 @@
 import React from 'react';
 import PipelineContext from '../contexts/PipelineContext.js';
 import { observable } from 'mobx';
+import parallelPipelineTrigger from '../utilities/parallelPipelineTrigger.js';
 
-function AsyncPipeline(props) {
+function AsyncPipeline(_ref) {
+  var children = _ref.children;
   var isPipingRef = React.useRef(observable.box());
   var pipesRef = React.useRef({});
   var pipes = pipesRef.current;
@@ -27,35 +29,23 @@ function AsyncPipeline(props) {
     }
   };
 
-  pipeline.trigger = function () {
+  pipeline.trigger = React.useCallback(function () {
     var payload = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    isPipingRef.current.set(true);
     return new Promise(function (resolve, reject) {
-      isPipingRef.current.set(true);
-      var promises = [];
-
-      if (pipesOrder.length > 0) {
-        pipesOrder.forEach(function (pipeUuid) {
-          promises.push(Promise.resolve(payload).then(function (payload) {
-            var pipe = pipes[pipeUuid];
-            return typeof pipe === 'function' ? pipe(payload) : pipe;
-          }));
-        });
-      }
-
-      Promise.all(promises).then(function (payload) {
+      parallelPipelineTrigger(pipesOrder, pipes)(payload).then(function (p) {
         isPipingRef.current.set(false);
-        resolve(payload);
+        resolve(p);
       }).catch(function (err) {
         isPipingRef.current.set(false);
         reject(err);
       });
     });
-  };
-
+  }, [pipesOrder, pipes]);
   pipeline.isPiping = isPipingRef.current;
   return /*#__PURE__*/React.createElement(PipelineContext.Provider, {
     value: pipeline
-  }, props.children);
+  }, children);
 }
 
 export default AsyncPipeline;
