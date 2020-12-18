@@ -1,6 +1,7 @@
 'use strict';
 
 require('react');
+var _rollupPluginBabelHelpers = require('../_virtual/_rollupPluginBabelHelpers.js');
 var useWillPipe = require('../hooks/use-will-pipe.js');
 var PropTypes = require('prop-types');
 
@@ -12,8 +13,9 @@ function CallbackOnPipe(_ref) {
   var callback = _ref.callback;
   useWillPipe(function (payload) {
     return new Promise(function (resolve, reject) {
-      Promise.resolve(callback(payload)).then(function (p) {
-        resolve(p);
+      Promise.resolve(callback(payload)).then(function () {
+        var p = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        resolve(_rollupPluginBabelHelpers.objectSpread2(_rollupPluginBabelHelpers.objectSpread2({}, payload), p));
       }).catch(function (err) {
         reject(err);
       });

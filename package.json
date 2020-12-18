@@ -1,6 +1,6 @@
 {
     "name": "@morningtrain/react-pipelines",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "",
     "scripts": {
         "test": "cross-env CI=1 react-scripts test --env=jsdom",
@@ -9,7 +9,7 @@
         "coverage": "cross-env CI=1 react-scripts test --coverage --env=jsdom",
         "build": "rollup -c",
         "start": "rollup -c -w",
-        "prepare": "npm run build",
+        "prepare": "npm run test && npm run build",
         "predeploy": "cd example && npm install && npm run build"
     },
     "main": "dist/cjs/index.js",
