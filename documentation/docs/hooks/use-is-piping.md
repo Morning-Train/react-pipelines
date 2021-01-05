@@ -75,3 +75,5 @@ It could then be used like this:
 </WhenIsPiping>
 
 ```
+
+The above components ([WhenIsPiping](../conditionals/when-is-piping)) and its opposite component ([WhenIsNotPiping](../conditionals/when-is-not-piping)) are provided from the package. 
