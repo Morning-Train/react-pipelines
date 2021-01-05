@@ -7,7 +7,7 @@ module.exports = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'Morning-Train', // Usually your GitHub org/user name.
-  projectName: 'daf-docs-react-pipelines', // Usually your repo name.
+  projectName: 'react-pipelines', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: 'React Pipelines',
