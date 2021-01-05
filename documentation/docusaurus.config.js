@@ -17,6 +17,11 @@ module.exports = {
           label: 'Morningtrain',
           position: 'right',
         },
+        {
+          href: 'https://github.com/Morning-Train/react-pipelines',
+          label: 'GitHub',
+          position: 'right',
+        },
       ],
     },
     footer: {
