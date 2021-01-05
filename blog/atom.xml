@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://github.com/Morning-Train/blog</id>
+    <title>React Pipelines Blog</title>
+    <updated>2015-10-25T23:29:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://github.com/Morning-Train/blog"/>
+    <subtitle>React Pipelines Blog</subtitle>
+    <icon>https://github.com/Morning-Train/img/favicon.ico</icon>
+</feed>
