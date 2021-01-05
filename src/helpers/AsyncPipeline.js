@@ -1,11 +1,10 @@
 import React from 'react';
 import { observable } from 'mobx';
 import PipelineContext from '../contexts/PipelineContext';
-import sequentialPipelineTrigger from '../utilities/sequentialPipelineTrigger';
 import parallelPipelineTrigger from '../utilities/parallelPipelineTrigger';
 
 function AsyncPipeline({ children }) {
-  const isPipingRef = React.useRef(observable.box());
+  const isPipingRef = React.useRef(observable.box(false));
 
   const pipesRef = React.useRef({});
   const pipes = pipesRef.current;

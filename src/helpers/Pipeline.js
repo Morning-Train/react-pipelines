@@ -4,7 +4,7 @@ import PipelineContext from '../contexts/PipelineContext';
 import sequentialPipelineTrigger from '../utilities/sequentialPipelineTrigger';
 
 function Pipeline({ children }) {
-  const isPipingRef = React.useRef(observable.box());
+  const isPipingRef = React.useRef(observable.box(false));
 
   const pipesRef = React.useRef({});
   const pipes = pipesRef.current;
