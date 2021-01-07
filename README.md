@@ -1,4 +1,4 @@
-# React Pipelines &middot; [![npm version](https://img.shields.io/npm/v/@morningtrain/react-pipelines.svg?style=flat)](https://www.npmjs.com/package/@morningtrain/react-pipelines) ![npm downloads](https://img.shields.io/npm/dm/@morningtrain/react-pipelines)
+# React Pipelines &middot; [![npm version](https://img.shields.io/npm/v/@morningtrain/react-pipelines.svg?style=flat)](https://www.npmjs.com/package/@morningtrain/react-pipelines) [![npm downloads](https://img.shields.io/npm/dm/@morningtrain/react-pipelines)](https://www.npmjs.com/package/@morningtrain/react-pipelines)
 The documentation for this package are [located here](https://react-pipelines.daf-docs.dev/)
 
 ## Credits
