@@ -4,7 +4,7 @@ title: AsyncPipeline
 
 
 
-The [AsyncPipeline](../components/async-pipeline) implements `Promise.all` to resolve all pipes asynchronously.
+The `AsyncPipeline` implements `Promise.all` to resolve all pipes asynchronously.
 Since all pipes are resolving in parallel, it will not be possible to access or pass along the payload between each pipe.
 Because of this - asynchronous pipelines should only be used with pipes that performs an independent action (Like triggering an AJAX request).
 

@@ -18,6 +18,8 @@ to making React components more maintainable.
 The package helps the developer achieve this by being a utility package
 that helps to create and decouple complex flows of business logic.
 
+For some examples inspired by real-life components, take a look a [this page](./introduction/examples).
+
 Let us try to illustrate the case by showing some code samples for two different approaches.
 
 ### How it could be done using spaghetti
@@ -101,6 +103,6 @@ At its core - it is all about JavaScript Promises.
 
 A `pipe` is a Promise-resolvable function (it should return a promise but might also return the payload directly).
 
-The [AsyncPipeline](../components/async-pipeline) implements `Promise.all` to resolve all pipes asynchronously 
-while the generic [Pipeline](../components/pipeline) component chains `Promise.then` calls synchronously.
+The [AsyncPipeline](../base_pipelines/async-pipeline) implements `Promise.all` to resolve all pipes asynchronously 
+while the generic [Pipeline](../base_pipelines/pipeline) component chains `Promise.then` calls synchronously.
 

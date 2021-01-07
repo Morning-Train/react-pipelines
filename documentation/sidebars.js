@@ -4,12 +4,20 @@ module.exports = {
       'introduction/about',
       'introduction/installation',
       'introduction/best-practices',
+      'introduction/examples',
     ],
-    Components: [
-      'components/pipeline',
-      'components/async-pipeline',
-      'components/nested-pipeline',
-      'components/nested-async-pipeline',
+    "Base pipelines": [
+      'base_pipelines/pipeline',
+      'base_pipelines/async-pipeline',
+      'base_pipelines/nested-pipeline',
+      'base_pipelines/nested-async-pipeline',
+    ],
+    Pipes: [
+      'pipes/callback-on-pipe',
+    ],
+    Triggers: [
+      'triggers/trigger-pipeline-on-click',
+      'triggers/trigger-pipeline-on-callback',
     ],
     Conditionals: [
       'conditionals/when-is-piping',
