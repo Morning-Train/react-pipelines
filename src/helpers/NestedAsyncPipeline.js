@@ -10,11 +10,23 @@ export default function NestedAsyncPipeline({ children }) {
     callbackRef.current = callback;
   };
 
-  useWillPipe(() => {
-    if (callbackRef.current && typeof callbackRef.current === 'function') {
-      callbackRef.current();
-    }
-  });
+  useWillPipe((payload) => new Promise((resolve, reject) => {
+    Promise.resolve(callbackRef.current(payload))
+      .then((p = {}) => {
+        let finalP = { ...payload };
+
+        if (Array.isArray(p)) {
+          p.forEach((_p) => {
+            finalP = { ...finalP, ..._p };
+          });
+        }
+
+        resolve(finalP);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  }));
 
   return (
     <AsyncPipeline>

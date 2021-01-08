@@ -10,11 +10,15 @@ export default function NestedPipeline({ children }) {
     callbackRef.current = callback;
   };
 
-  useWillPipe(() => {
-    if (callbackRef.current && typeof callbackRef.current === 'function') {
-      callbackRef.current();
-    }
-  });
+  useWillPipe((payload) => new Promise((resolve, reject) => {
+    Promise.resolve(callbackRef.current(payload))
+      .then((p = {}) => {
+        resolve({ ...payload, ...p });
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  }));
 
   return (
     <Pipeline>
