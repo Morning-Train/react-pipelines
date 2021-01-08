@@ -1,16 +1,16 @@
 module.exports = {
   someSidebar: {
-    Introduction: [
-      'introduction/about',
-      'introduction/installation',
-      'introduction/best-practices',
-      'introduction/examples',
+    "Getting started": [
+      'getting_started/introduction',
+      'getting_started/installation',
+      'getting_started/best-practices',
+      'getting_started/examples',
     ],
-    "Base pipelines": [
-      'base_pipelines/pipeline',
-      'base_pipelines/async-pipeline',
-      'base_pipelines/nested-pipeline',
-      'base_pipelines/nested-async-pipeline',
+    "Pipelines": [
+      'pipelines/pipeline',
+      'pipelines/async-pipeline',
+      'pipelines/nested-pipeline',
+      'pipelines/nested-async-pipeline',
     ],
     Pipes: [
       'pipes/callback-on-pipe',

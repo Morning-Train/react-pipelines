@@ -3,7 +3,7 @@ title: TriggerPipelineOnCallback
 ---
 
 The `TriggerPipelineOnCallback` pipeline trigger is an advanced component 
-used internally to implement the [nested pipelines](../base_pipelines/nested-pipeline).
+used internally to implement the [nested pipelines](../pipelines/nested-pipeline).
 
 To make it easier to explain how it works, let us take a look at how `NestedPipeline` is implemented in the package.
 
