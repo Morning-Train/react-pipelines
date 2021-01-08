@@ -5,7 +5,7 @@ import sequentialPipelineTrigger from '../utilities/sequentialPipelineTrigger.js
 
 function Pipeline(_ref) {
   var children = _ref.children;
-  var isPipingRef = React.useRef(observable.box());
+  var isPipingRef = React.useRef(observable.box(false));
   var pipesRef = React.useRef({});
   var pipes = pipesRef.current;
   var pipesOrderRef = React.useRef([]);

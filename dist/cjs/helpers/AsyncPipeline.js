@@ -11,7 +11,7 @@ var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function AsyncPipeline(_ref) {
   var children = _ref.children;
-  var isPipingRef = React__default['default'].useRef(mobx.observable.box());
+  var isPipingRef = React__default['default'].useRef(mobx.observable.box(false));
   var pipesRef = React__default['default'].useRef({});
   var pipes = pipesRef.current;
   var pipesOrderRef = React__default['default'].useRef([]);

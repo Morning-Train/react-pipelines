@@ -9,4 +9,6 @@ export { default as Pipeline } from './helpers/Pipeline.js';
 export { default as NestedPipeline } from './helpers/NestedPipeline.js';
 export { default as CallbackOnPipe } from './pipes/CallbackOnPipe.js';
 export { default as TriggerPipelineOnClick } from './triggers/TriggerPipelineOnClick.js';
+export { default as WhenIsNotPiping } from './conditionals/WhenIsNotPiping.js';
+export { default as WhenIsPiping } from './conditionals/WhenIsPiping.js';
 //# sourceMappingURL=index.js.map

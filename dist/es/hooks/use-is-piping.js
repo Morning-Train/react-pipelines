@@ -4,6 +4,11 @@ import usePipeline from './use-pipeline.js';
 
 function useIsPiping() {
   var pipeline = usePipeline();
+
+  if (pipeline === null) {
+    throw new Error('useIsPiping hook are used outside the scope of a pipeline');
+  }
+
   var boxedValue = pipeline.isPiping;
 
   var _React$useState = React.useState(boxedValue.get()),

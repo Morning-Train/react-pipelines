@@ -10,6 +10,11 @@ var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function useIsPiping() {
   var pipeline = usePipeline();
+
+  if (pipeline === null) {
+    throw new Error('useIsPiping hook are used outside the scope of a pipeline');
+  }
+
   var boxedValue = pipeline.isPiping;
 
   var _React$useState = React__default['default'].useState(boxedValue.get()),

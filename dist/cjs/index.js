@@ -13,6 +13,8 @@ var Pipeline = require('./helpers/Pipeline.js');
 var NestedPipeline = require('./helpers/NestedPipeline.js');
 var CallbackOnPipe = require('./pipes/CallbackOnPipe.js');
 var TriggerPipelineOnClick = require('./triggers/TriggerPipelineOnClick.js');
+var WhenIsNotPiping = require('./conditionals/WhenIsNotPiping.js');
+var WhenIsPiping = require('./conditionals/WhenIsPiping.js');
 
 
 
@@ -27,4 +29,6 @@ exports.Pipeline = Pipeline;
 exports.NestedPipeline = NestedPipeline;
 exports.CallbackOnPipe = CallbackOnPipe;
 exports.TriggerPipelineOnClick = TriggerPipelineOnClick;
+exports.WhenIsNotPiping = WhenIsNotPiping;
+exports.WhenIsPiping = WhenIsPiping;
 //# sourceMappingURL=index.js.map
