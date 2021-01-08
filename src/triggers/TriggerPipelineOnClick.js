@@ -7,9 +7,17 @@ function TriggerPipelineOnClick({ children }) {
   const isPiping = useIsPiping();
 
   const handleClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    e.persist();
+    if (e) {
+      if (typeof e.preventDefault === 'function') {
+        e.preventDefault();
+      }
+      if (typeof e.stopPropagation === 'function') {
+        e.stopPropagation();
+      }
+      if (typeof e.persist === 'function') {
+        e.persist();
+      }
+    }
 
     const payload = {
       clickEvent: e,
