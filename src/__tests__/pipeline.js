@@ -51,3 +51,23 @@ it('pipeline runs in correct order - reversed', () => {
     expect(p.test).toBe(123);
   });
 });
+
+it('pipeline runs when no pipes are provided', () => {
+  let trigger = null;
+
+  const setTrigger = (callback) => {
+    trigger = callback;
+  };
+
+  mount(
+    <Pipeline>
+      <TriggerPipelineOnCallback callback={setTrigger} />
+    </Pipeline>,
+  );
+
+  expect.assertions(1);
+
+  return trigger({ test: 'data' }).then((p) => {
+    expect(p.test).toBe('data');
+  });
+});
