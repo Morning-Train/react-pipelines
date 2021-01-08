@@ -51,3 +51,77 @@ Our `NavigateOnClick` component is independent of any layout constraints and can
 This allows for easier reuse. It is entirely possible to implement a project-level `Link` component 
 that both provides layout and functionality by pairing the above reusable component with a UI component.
 
+### Delete with extra confirmation on click
+
+One could develop a `ConfirmOnPipe` custom pipe that would implement a confirmation modal when triggered.
+It could utilize a nested pipeline and look something like the following example.
+Note that the `modalRef` variable defined in the example would have to be declared in the React component.
+
+```jsx
+import {
+    NestedPipeline,
+    CallbackOnPipe
+} from "@morningtrain/react-pipelines";
+/* ----------------------------------------- */
+<NestedPipeline>
+    <Modal ref={modalRef}>
+        <ConfirmModalContent onConfirm={confirmFunction} />
+    </Modal>
+    <OpenModalOnPipe modalRef={modalRef} />
+    <CallbackOnPipe callback={awaitConfirmFunction} />
+    <CloseModalOnPipe modalRef={modalRef} />
+</NestedPipeline>
+
+```
+
+The `OpenModalOnPipe` and `CloseModalOnPipe` pipe components are used to open and close the modal
+whenever that step in the pipeline is reached.
+
+The `awaitConfirmFunction` function will return a promise that only resolves whenever the `confirmFunction` is called
+by the `ConfirmModalContent` component.
+This would be accomplished by `awaitConfirmFunction` setting a local resolve and reject variable in the React component
+that should contain the value from the promise. It could look like this:
+
+```js
+const awaitConfirmFunction = (payload) => {
+    return new Promise((resolve, reject) => {
+        _resolve.current = data => {
+            payload.data = data;
+            resolve(data);
+        };
+        _reject.current = (err) => {
+            reject(err);
+        };
+    });
+};
+```
+and 
+```js
+const confirmFunction = (data) => {
+    if (_resolve.current !== null) {
+        _resolve.current(data);
+    }
+};
+```
+
+With the above functionality, it would not be possible to implement a pipeline 
+that will send an ajax DELETE request whenever the user clicks a button.
+The example uses a pseudo `SendDeleteAjaxRequestOnPipe` component.
+
+```jsx
+import {
+    Pipeline,
+    TriggerPipelineOnClick
+} from "@morningtrain/react-pipelines";
+/* ----------------------------------------- */
+<Pipeline>
+    <TriggerPipelineOnClick>
+        <a>Click me to delete</a>
+    </TriggerPipelineOnClick>
+    <ConfirmOnPipe confirmText={'Are you sure that you would like to delete?'} />
+    <SendDeleteAjaxRequestOnPipe />
+</Pipeline>
+```
+
+Having implemented the `ConfirmOnPipe` pipe component - we are now able to reuse it in other pipelines.
+We could for instance include a confirmation modal before navigating in the first `NavigateOnClick`example.
