@@ -125,3 +125,4 @@ import {
 
 Having implemented the `ConfirmOnPipe` pipe component - we are now able to reuse it in other pipelines.
 We could for instance include a confirmation modal before navigating in the first `NavigateOnClick`example.
+
