@@ -36,7 +36,6 @@ function TriggerPipelineOnClick({ children, onlyTriggerWhenIdle = true }) {
         return p;
       })
       .catch((err) => {
-        console.log('caught error', err);
         isCurrentlyPipingRef.current = false;
       });
   };
