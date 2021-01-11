@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-const PipelineContext = React.createContext(null);
+const PipelineContext = React.createContext(null)
 
-export const { Provider } = PipelineContext;
-export const { Consumer } = PipelineContext;
+export const { Provider } = PipelineContext
+export const { Consumer } = PipelineContext
 
-export default PipelineContext;
+export default PipelineContext

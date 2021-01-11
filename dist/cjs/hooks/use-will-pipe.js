@@ -1,24 +1,24 @@
-'use strict';
+'use strict'
 
-var React = require('react');
-var usePipeline = require('./use-pipeline.js');
-var lodash = require('lodash');
+const React = require('react')
+const usePipeline = require('./use-pipeline.js')
+const lodash = require('lodash')
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { default: e } }
 
-var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+const React__default = /* #__PURE__ */_interopDefaultLegacy(React)
 
-function useWillPipe(callback) {
-  var dependencies = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-  var pipeline = usePipeline();
-  var uuidRef = React__default['default'].useRef(lodash.uniqueId('pipe_'));
-  React__default['default'].useEffect(function () {
-    var disposer = pipeline.pipe(uuidRef.current, callback);
+function useWillPipe (callback) {
+  const dependencies = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : []
+  const pipeline = usePipeline()
+  const uuidRef = React__default.default.useRef(lodash.uniqueId('pipe_'))
+  React__default.default.useEffect(function () {
+    const disposer = pipeline.pipe(uuidRef.current, callback)
     return function () {
-      disposer();
-    };
-  }, dependencies);
+      disposer()
+    }
+  }, dependencies)
 }
 
-module.exports = useWillPipe;
-//# sourceMappingURL=use-will-pipe.js.map
+module.exports = useWillPipe
+// # sourceMappingURL=use-will-pipe.js.map

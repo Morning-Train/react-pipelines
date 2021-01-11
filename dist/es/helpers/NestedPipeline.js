@@ -1,25 +1,25 @@
-import React from 'react';
-import useWillPipe from '../hooks/use-will-pipe.js';
-import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback.js';
-import Pipeline from './Pipeline.js';
+import React from 'react'
+import useWillPipe from '../hooks/use-will-pipe.js'
+import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback.js'
+import Pipeline from './Pipeline.js'
 
-function NestedPipeline(_ref) {
-  var children = _ref.children;
-  var callbackRef = React.useRef(null);
+function NestedPipeline (_ref) {
+  const children = _ref.children
+  const callbackRef = React.useRef(null)
 
-  var updateCallbackRef = function updateCallbackRef(callback) {
-    callbackRef.current = callback;
-  };
+  const updateCallbackRef = function updateCallbackRef (callback) {
+    callbackRef.current = callback
+  }
 
   useWillPipe(function () {
     if (callbackRef.current && typeof callbackRef.current === 'function') {
-      callbackRef.current();
+      callbackRef.current()
     }
-  });
-  return /*#__PURE__*/React.createElement(Pipeline, null, /*#__PURE__*/React.createElement(TriggerPipelineOnCallback, {
+  })
+  return /* #__PURE__ */React.createElement(Pipeline, null, /* #__PURE__ */React.createElement(TriggerPipelineOnCallback, {
     callback: updateCallbackRef
-  }), children);
+  }), children)
 }
 
-export default NestedPipeline;
-//# sourceMappingURL=NestedPipeline.js.map
+export default NestedPipeline
+// # sourceMappingURL=NestedPipeline.js.map

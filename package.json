@@ -4,8 +4,8 @@
     "description": "",
     "scripts": {
         "test": "cross-env CI=1 react-scripts test --env=jsdom",
-        "lint": "eslint --ext .js,.jsx ./src",
-        "lint-fix": "eslint --fix --ext .js,.jsx ./src",
+        "lint": "npx standard",
+        "lint-fix": "npx standard --fix",
         "coverage": "cross-env CI=1 react-scripts test --coverage --env=jsdom",
         "build": "rollup -c",
         "start": "rollup -c -w",

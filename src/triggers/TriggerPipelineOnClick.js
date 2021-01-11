@@ -1,56 +1,56 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import usePipeline from '../hooks/use-pipeline';
+import React from 'react'
+import PropTypes from 'prop-types'
+import usePipeline from '../hooks/use-pipeline'
 
-function TriggerPipelineOnClick({ children, onlyTriggerWhenIdle = true }) {
-  const pipeline = usePipeline();
+function TriggerPipelineOnClick ({ children, onlyTriggerWhenIdle = true }) {
+  const pipeline = usePipeline()
 
-  const isCurrentlyPipingRef = React.useRef(false);
+  const isCurrentlyPipingRef = React.useRef(false)
 
   const handleClick = (e) => {
     if (e) {
       if (typeof e.preventDefault === 'function') {
-        e.preventDefault();
+        e.preventDefault()
       }
       if (typeof e.stopPropagation === 'function') {
-        e.stopPropagation();
+        e.stopPropagation()
       }
       if (typeof e.persist === 'function') {
-        e.persist();
+        e.persist()
       }
     }
 
     if (onlyTriggerWhenIdle === true && isCurrentlyPipingRef.current === true) {
-      return;
+      return
     }
 
-    isCurrentlyPipingRef.current = true;
+    isCurrentlyPipingRef.current = true
 
     const payload = {
-      clickEvent: e,
-    };
+      clickEvent: e
+    }
 
     pipeline.trigger(payload)
       .then((p) => {
-        isCurrentlyPipingRef.current = false;
-        return p;
+        isCurrentlyPipingRef.current = false
+        return p
       })
       .catch((err) => {
-        isCurrentlyPipingRef.current = false;
-      });
-  };
+        isCurrentlyPipingRef.current = false
+      })
+  }
 
   return (
-    <React.Fragment>
+    <>
       {React.Children.map(children, (child) => (
         React.cloneElement(child, { onClick: handleClick })
       ))}
-    </React.Fragment>
-  );
+    </>
+  )
 }
 
 TriggerPipelineOnClick.propTypes = {
-  onlyTriggerWhenIdle: PropTypes.bool,
-};
+  onlyTriggerWhenIdle: PropTypes.bool
+}
 
-export default TriggerPipelineOnClick;
+export default TriggerPipelineOnClick

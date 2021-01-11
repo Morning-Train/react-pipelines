@@ -1,130 +1,130 @@
-import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { uniqueId } from 'lodash';
-import { Pipeline, CallbackOnPipe, TriggerPipelineOnCallback } from '../..';
-import sequentialPipelineTrigger from '../../utilities/sequentialPipelineTrigger';
+import React from 'react'
+import { shallow, mount } from 'enzyme'
+import { uniqueId } from 'lodash'
+import { Pipeline, CallbackOnPipe, TriggerPipelineOnCallback } from '../..'
+import sequentialPipelineTrigger from '../../utilities/sequentialPipelineTrigger'
 
 it('renders CallbackOnPipe without crashing', () => {
-  const mockCallBack = jest.fn();
-  shallow(<CallbackOnPipe callback={mockCallBack} />);
-  expect(mockCallBack.mock.calls.length).toEqual(0);
-});
+  const mockCallBack = jest.fn()
+  shallow(<CallbackOnPipe callback={mockCallBack} />)
+  expect(mockCallBack.mock.calls.length).toEqual(0)
+})
 
 it('renders CallbackOnPipe inside pipeline without crashing', () => {
-  const mockCallBack = jest.fn();
+  const mockCallBack = jest.fn()
   shallow(
     <Pipeline>
       <CallbackOnPipe callback={mockCallBack} />
-    </Pipeline>,
-  );
-  expect(mockCallBack.mock.calls.length).toEqual(0);
-});
+    </Pipeline>
+  )
+  expect(mockCallBack.mock.calls.length).toEqual(0)
+})
 
 it('CallbackOnPipe triggers once', () => {
-  const mockCallBack = jest.fn();
+  const mockCallBack = jest.fn()
 
-  let trigger = null;
+  let trigger = null
 
   const setTrigger = (callback) => {
-    trigger = callback;
-  };
+    trigger = callback
+  }
 
   mount(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={mockCallBack} />
-    </Pipeline>,
-  );
+    </Pipeline>
+  )
 
-  expect.assertions(1);
+  expect.assertions(1)
 
   return trigger()
     .then(() => {
-      expect(mockCallBack.mock.calls.length).toEqual(1);
-    });
-});
+      expect(mockCallBack.mock.calls.length).toEqual(1)
+    })
+})
 
 it('CallbackOnPipe triggers twice', () => {
-  const mockCallBack = jest.fn();
+  const mockCallBack = jest.fn()
 
-  let trigger = null;
+  let trigger = null
 
   const setTrigger = (callback) => {
-    trigger = callback;
-  };
+    trigger = callback
+  }
 
   mount(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={mockCallBack} />
-    </Pipeline>,
-  );
+    </Pipeline>
+  )
 
-  expect.assertions(1);
+  expect.assertions(1)
 
   return trigger()
     .then(() => trigger())
     .then(() => {
-      expect(mockCallBack.mock.calls.length).toEqual(2);
-    });
-});
+      expect(mockCallBack.mock.calls.length).toEqual(2)
+    })
+})
 
 it('CallbackOnPipe can throw', () => {
-  let trigger = null;
+  let trigger = null
 
   const setTrigger = (callback) => {
-    trigger = callback;
-  };
+    trigger = callback
+  }
 
   mount(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={() => {
-        throw new Error('test');
+        throw new Error('test')
       }}
       />
-    </Pipeline>,
-  );
+    </Pipeline>
+  )
 
-  expect.assertions(1);
+  expect.assertions(1)
 
-  return trigger().catch((err) => expect(err.message).toBe('test'));
-});
+  return trigger().catch((err) => expect(err.message).toBe('test'))
+})
 
 it('CallbackOnPipe can throw and block', () => {
-  const mockCallBack = jest.fn();
+  const mockCallBack = jest.fn()
 
-  let trigger = null;
+  let trigger = null
 
   const setTrigger = (callback) => {
-    trigger = callback;
-  };
+    trigger = callback
+  }
 
   mount(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={() => {
-        throw new Error('test');
+        throw new Error('test')
       }}
       />
       <CallbackOnPipe callback={mockCallBack} />
-    </Pipeline>,
-  );
+    </Pipeline>
+  )
 
-  expect.assertions(2);
+  expect.assertions(2)
 
   return trigger({ test: 'data' }).catch((err) => {
-    expect(mockCallBack.mock.calls.length).toEqual(0);
-    expect(err.message).toBe('test');
-  });
-});
+    expect(mockCallBack.mock.calls.length).toEqual(0)
+    expect(err.message).toBe('test')
+  })
+})
 
 it('CallbackOnPipe passes along payload', () => {
-  let trigger = null;
+  let trigger = null
 
   const setTrigger = (callback) => {
-    trigger = callback;
-  };
+    trigger = callback
+  }
 
   mount(
     <Pipeline>
@@ -132,14 +132,14 @@ it('CallbackOnPipe passes along payload', () => {
       <CallbackOnPipe callback={(p) => Promise.resolve(p)} />
       <CallbackOnPipe callback={(p) => Promise.resolve({ ...p, test1: 321 })} />
       <CallbackOnPipe callback={(p) => Promise.resolve({ ...p, test2: 123 })} />
-    </Pipeline>,
-  );
+    </Pipeline>
+  )
 
-  expect.assertions(3);
+  expect.assertions(3)
 
   return trigger({ test: 'data' }).then((p) => {
-    expect(p.test).toBe('data');
-    expect(p.test1).toBe(321);
-    expect(p.test2).toBe(123);
-  });
-});
+    expect(p.test).toBe('data')
+    expect(p.test1).toBe(321)
+    expect(p.test2).toBe(123)
+  })
+})

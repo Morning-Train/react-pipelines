@@ -1,17 +1,17 @@
-import React from 'react';
-import { uniqueId } from 'lodash';
-import usePipeline from './use-pipeline';
+import React from 'react'
+import { uniqueId } from 'lodash'
+import usePipeline from './use-pipeline'
 
-export default function useWillPipe(callback, dependencies = []) {
-  const pipeline = usePipeline();
+export default function useWillPipe (callback, dependencies = []) {
+  const pipeline = usePipeline()
 
-  const uuidRef = React.useRef(uniqueId('pipe_'));
+  const uuidRef = React.useRef(uniqueId('pipe_'))
 
   React.useEffect(() => {
-    const disposer = pipeline.pipe(uuidRef.current, callback);
+    const disposer = pipeline.pipe(uuidRef.current, callback)
 
     return () => {
-      disposer();
-    };
-  }, dependencies);
+      disposer()
+    }
+  }, dependencies)
 }

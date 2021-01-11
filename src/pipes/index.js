@@ -1,1 +1,1 @@
-export { default as CallbackOnPipe } from './CallbackOnPipe';
+export { default as CallbackOnPipe } from './CallbackOnPipe'

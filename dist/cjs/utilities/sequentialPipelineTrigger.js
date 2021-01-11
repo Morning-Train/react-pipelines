@@ -1,28 +1,28 @@
-'use strict';
+'use strict'
 
-function sequentialPipelineTrigger(pipesOrder, pipes) {
+function sequentialPipelineTrigger (pipesOrder, pipes) {
   return function () {
-    var payload = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    const payload = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}
     return new Promise(function (resolve, reject) {
-      var promise = Promise.resolve(payload);
+      let promise = Promise.resolve(payload)
 
       if (pipesOrder.length > 0) {
         pipesOrder.forEach(function (pipeUuid) {
           promise = promise.then(function (p) {
-            var pipe = pipes[pipeUuid];
-            return typeof pipe === 'function' ? pipe(p) : pipe;
-          });
-        });
+            const pipe = pipes[pipeUuid]
+            return typeof pipe === 'function' ? pipe(p) : pipe
+          })
+        })
       }
 
       promise.then(function (p) {
-        resolve(p);
+        resolve(p)
       }).catch(function (err) {
-        reject(err);
-      });
-    });
-  };
+        reject(err)
+      })
+    })
+  }
 }
 
-module.exports = sequentialPipelineTrigger;
-//# sourceMappingURL=sequentialPipelineTrigger.js.map
+module.exports = sequentialPipelineTrigger
+// # sourceMappingURL=sequentialPipelineTrigger.js.map

@@ -15,20 +15,20 @@ module.exports = {
         {
           href: 'https://morningtrain.dk/en',
           label: 'Morningtrain',
-          position: 'right',
+          position: 'right'
         },
         {
           href: 'https://github.com/Morning-Train/react-pipelines',
           label: 'GitHub',
-          position: 'right',
-        },
-      ],
+          position: 'right'
+        }
+      ]
     },
     footer: {
       style: 'dark',
       links: [],
-      copyright: `Copyright © ${new Date().getFullYear()} Morningtrain ApS.`,
-    },
+      copyright: `Copyright © ${new Date().getFullYear()} Morningtrain ApS.`
+    }
   },
   presets: [
     [
@@ -39,12 +39,12 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            'https://github.com/facebook/docusaurus/edit/master/website/'
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      },
-    ],
-  ],
-};
+          customCss: require.resolve('./src/css/custom.css')
+        }
+      }
+    ]
+  ]
+}

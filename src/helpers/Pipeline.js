@@ -1,67 +1,67 @@
-import React from 'react';
-import PipelineContext from '../contexts/PipelineContext';
-import sequentialPipelineTrigger from '../utilities/sequentialPipelineTrigger';
-import useEventListeners from '../hooks/use-event-listeners';
+import React from 'react'
+import PipelineContext from '../contexts/PipelineContext'
+import sequentialPipelineTrigger from '../utilities/sequentialPipelineTrigger'
+import useEventListeners from '../hooks/use-event-listeners'
 
-function Pipeline({ children }) {
-  const isPipingRef = React.useRef(false);
+function Pipeline ({ children }) {
+  const isPipingRef = React.useRef(false)
 
-  const pipesRef = React.useRef({});
-  const pipes = pipesRef.current;
+  const pipesRef = React.useRef({})
+  const pipes = pipesRef.current
 
-  const pipesOrderRef = React.useRef([]);
-  const pipesOrder = pipesOrderRef.current;
+  const pipesOrderRef = React.useRef([])
+  const pipesOrder = pipesOrderRef.current
 
-  const [triggerOnIsPipingChange, onIsPipingChange] = useEventListeners();
+  const [triggerOnIsPipingChange, onIsPipingChange] = useEventListeners()
 
   const pipeline = {
-    onIsPipingChange,
-  };
+    onIsPipingChange
+  }
 
   pipeline.pipe = (uuid, pipe) => {
     if (!pipesOrder.includes(uuid)) {
-      pipesOrder.push(uuid);
+      pipesOrder.push(uuid)
     }
 
-    pipes[uuid] = pipe;
+    pipes[uuid] = pipe
 
     return () => {
-      pipeline.remove(uuid);
-    };
-  };
+      pipeline.remove(uuid)
+    }
+  }
 
   pipeline.remove = (uuid) => {
     if (pipes[uuid]) {
-      delete pipes[uuid];
+      delete pipes[uuid]
     }
-  };
+  }
 
   pipeline.trigger = React.useCallback((payload = {}) => {
-    isPipingRef.current = true;
-    triggerOnIsPipingChange(isPipingRef.current);
+    isPipingRef.current = true
+    triggerOnIsPipingChange(isPipingRef.current)
 
     return new Promise((resolve, reject) => {
       sequentialPipelineTrigger(pipesOrder, pipes)(payload)
         .then((p) => {
-          isPipingRef.current = false;
-          triggerOnIsPipingChange(isPipingRef.current);
-          resolve(p);
+          isPipingRef.current = false
+          triggerOnIsPipingChange(isPipingRef.current)
+          resolve(p)
         })
         .catch((err) => {
-          isPipingRef.current = false;
-          triggerOnIsPipingChange(isPipingRef.current);
-          reject(err);
-        });
-    });
-  }, [pipesOrder, pipes]);
+          isPipingRef.current = false
+          triggerOnIsPipingChange(isPipingRef.current)
+          reject(err)
+        })
+    })
+  }, [pipesOrder, pipes])
 
-  pipeline.isPiping = isPipingRef.current;
+  pipeline.isPiping = isPipingRef.current
 
   return (
     <PipelineContext.Provider value={pipeline}>
       {children}
     </PipelineContext.Provider>
-  );
+  )
 }
 
-export default Pipeline;
+export default Pipeline

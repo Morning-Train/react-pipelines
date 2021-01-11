@@ -1,23 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import useWillPipe from '../hooks/use-will-pipe';
+import React from 'react'
+import PropTypes from 'prop-types'
+import useWillPipe from '../hooks/use-will-pipe'
 
-function CallbackOnPipe({ callback }) {
+function CallbackOnPipe ({ callback }) {
   useWillPipe((payload) => new Promise((resolve, reject) => {
     Promise.resolve(callback(payload))
       .then((p = {}) => {
-        resolve({ ...payload, ...p });
+        resolve({ ...payload, ...p })
       })
       .catch((err) => {
-        reject(err);
-      });
-  }), [callback]);
+        reject(err)
+      })
+  }), [callback])
 
-  return null;
+  return null
 }
 
 CallbackOnPipe.propTypes = {
-  callback: PropTypes.func.isRequired,
-};
+  callback: PropTypes.func.isRequired
+}
 
-export default CallbackOnPipe;
+export default CallbackOnPipe

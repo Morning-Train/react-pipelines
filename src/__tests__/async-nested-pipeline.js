@@ -1,21 +1,21 @@
-import React from 'react';
-import { mount, shallow } from 'enzyme';
+import React from 'react'
+import { mount, shallow } from 'enzyme'
 import {
-  CallbackOnPipe, NestedAsyncPipeline, Pipeline, TriggerPipelineOnCallback,
-} from '..';
+  CallbackOnPipe, NestedAsyncPipeline, Pipeline, TriggerPipelineOnCallback
+} from '..'
 
 it('renders AsyncNestedPipeline without crashing', () => {
-  shallow(<NestedAsyncPipeline>test</NestedAsyncPipeline>);
-});
+  shallow(<NestedAsyncPipeline>test</NestedAsyncPipeline>)
+})
 
 it('AsyncNestedPipeline runs in pipeline', () => {
-  let trigger = null;
+  let trigger = null
 
-  const mockCallBack = jest.fn();
+  const mockCallBack = jest.fn()
 
   const setTrigger = (callback) => {
-    trigger = callback;
-  };
+    trigger = callback
+  }
 
   mount(
     <Pipeline>
@@ -26,16 +26,16 @@ it('AsyncNestedPipeline runs in pipeline', () => {
         <CallbackOnPipe callback={mockCallBack} />
       </NestedAsyncPipeline>
       <CallbackOnPipe callback={mockCallBack} />
-    </Pipeline>,
-  );
+    </Pipeline>
+  )
 
-  expect.assertions(4);
+  expect.assertions(4)
 
   return trigger({ initial: 'data' })
     .then((p) => {
-      expect(mockCallBack.mock.calls.length).toEqual(2);
-      expect(p.test).toBe('data');
-      expect(p.some).toBe('test');
-      expect(p.initial).toBe('data');
-    });
-});
+      expect(mockCallBack.mock.calls.length).toEqual(2)
+      expect(p.test).toBe('data')
+      expect(p.some).toBe('test')
+      expect(p.initial).toBe('data')
+    })
+})
