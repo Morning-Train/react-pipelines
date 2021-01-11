@@ -8,25 +8,17 @@ export default function useIsPiping() {
     throw new Error('useIsPiping hook are used outside the scope of a pipeline');
   }
 
-  const boxedValue = pipeline.isPiping;
-
-  const [value, setValue] = React.useState(boxedValue.get());
+  const [value, setValue] = React.useState(pipeline.isPiping);
 
   React.useEffect(() => {
-    const disposer = boxedValue.observe(() => {
-      const currentBoxedValue = boxedValue.get();
-
-      setValue(currentBoxedValue);
+    const disposer = pipeline.onIsPipingChange((isPipingValue) => {
+      setValue(isPipingValue);
     });
 
     return () => {
       disposer();
     };
-  }, [boxedValue]);
+  }, [pipeline]);
 
-  function setValueOverride(val) {
-    boxedValue.set(val);
-  }
-
-  return [value, setValueOverride];
+  return [value, setValue];
 }

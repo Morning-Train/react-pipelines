@@ -1,10 +1,10 @@
 import React from 'react';
-import { observable } from 'mobx';
 import PipelineContext from '../contexts/PipelineContext';
 import sequentialPipelineTrigger from '../utilities/sequentialPipelineTrigger';
+import useEventListeners from '../hooks/use-event-listeners';
 
 function Pipeline({ children }) {
-  const isPipingRef = React.useRef(observable.box(false));
+  const isPipingRef = React.useRef(false);
 
   const pipesRef = React.useRef({});
   const pipes = pipesRef.current;
@@ -12,7 +12,11 @@ function Pipeline({ children }) {
   const pipesOrderRef = React.useRef([]);
   const pipesOrder = pipesOrderRef.current;
 
-  const pipeline = {};
+  const [triggerOnIsPipingChange, onIsPipingChange] = useEventListeners();
+
+  const pipeline = {
+    onIsPipingChange,
+  };
 
   pipeline.pipe = (uuid, pipe) => {
     if (!pipesOrder.includes(uuid)) {
@@ -33,16 +37,19 @@ function Pipeline({ children }) {
   };
 
   pipeline.trigger = React.useCallback((payload = {}) => {
-    isPipingRef.current.set(true);
+    isPipingRef.current = true;
+    triggerOnIsPipingChange(isPipingRef.current);
 
     return new Promise((resolve, reject) => {
       sequentialPipelineTrigger(pipesOrder, pipes)(payload)
         .then((p) => {
-          isPipingRef.current.set(false);
+          isPipingRef.current = false;
+          triggerOnIsPipingChange(isPipingRef.current);
           resolve(p);
         })
         .catch((err) => {
-          isPipingRef.current.set(false);
+          isPipingRef.current = false;
+          triggerOnIsPipingChange(isPipingRef.current);
           reject(err);
         });
     });
