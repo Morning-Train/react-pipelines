@@ -1,10 +1,8 @@
 import React from 'react';
 import usePipeline from '../hooks/use-pipeline';
-import useIsPiping from '../hooks/use-is-piping';
 
 function TriggerPipelineOnClick({ children }) {
   const pipeline = usePipeline();
-  const isPiping = useIsPiping();
 
   const handleClick = (e) => {
     if (e) {
@@ -30,7 +28,7 @@ function TriggerPipelineOnClick({ children }) {
   return (
     <React.Fragment>
       {React.Children.map(children, (child) => (
-        React.cloneElement(child, { onClick: (e) => handleClick(e), disabled: isPiping })
+        React.cloneElement(child, { onClick: (e) => handleClick(e) })
       ))}
     </React.Fragment>
   );
