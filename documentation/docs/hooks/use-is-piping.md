@@ -4,7 +4,8 @@ title: useIsPiping
 
 This is a custom hook that listens to the `isPiping` property on the pipeline context object.
 
-The pipeline is internally using a [MobX Box](https://mobx.js.org/api.html#observablebox) to contain the piping (boolean) status.
+The pipeline is internally storing the isPiping (boolean) status in a React ref and will trigger
+any assigned event listeners when changing.
 
 `useIsPiping` returns a React state and setter function and can be used like this:
 
