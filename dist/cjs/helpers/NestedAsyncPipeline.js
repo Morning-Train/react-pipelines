@@ -1,31 +1,46 @@
-'use strict'
+'use strict';
 
-const React = require('react')
-const useWillPipe = require('../hooks/use-will-pipe.js')
-const AsyncPipeline = require('./AsyncPipeline.js')
-const TriggerPipelineOnCallback = require('../triggers/TriggerPipelineOnCallback.js')
+var React = require('react');
+var _rollupPluginBabelHelpers = require('../_virtual/_rollupPluginBabelHelpers.js');
+var useWillPipe = require('../hooks/use-will-pipe.js');
+var AsyncPipeline = require('./AsyncPipeline.js');
+var TriggerPipelineOnCallback = require('../triggers/TriggerPipelineOnCallback.js');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { default: e } }
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-const React__default = /* #__PURE__ */_interopDefaultLegacy(React)
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
-function NestedAsyncPipeline (_ref) {
-  const children = _ref.children
-  const callbackRef = React__default.default.useRef(null)
+function NestedAsyncPipeline(_ref) {
+  var children = _ref.children;
+  var callbackRef = React__default['default'].useRef(null);
 
-  const updateCallbackRef = function updateCallbackRef (callback) {
-    callbackRef.current = callback
-  }
+  var updateCallbackRef = function updateCallbackRef(callback) {
+    callbackRef.current = callback;
+  };
 
-  useWillPipe(function () {
-    if (callbackRef.current && typeof callbackRef.current === 'function') {
-      callbackRef.current()
-    }
-  })
-  return /* #__PURE__ */React__default.default.createElement(AsyncPipeline, null, /* #__PURE__ */React__default.default.createElement(TriggerPipelineOnCallback, {
+  useWillPipe(function (payload) {
+    return new Promise(function (resolve, reject) {
+      Promise.resolve(callbackRef.current(payload)).then(function () {
+        var p = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        var finalP = _rollupPluginBabelHelpers.objectSpread2({}, payload);
+
+        if (Array.isArray(p)) {
+          p.forEach(function (_p) {
+            finalP = _rollupPluginBabelHelpers.objectSpread2(_rollupPluginBabelHelpers.objectSpread2({}, finalP), _p);
+          });
+        }
+
+        resolve(finalP);
+      }).catch(function (err) {
+        reject(err);
+      });
+    });
+  });
+  return /*#__PURE__*/React__default['default'].createElement(AsyncPipeline, null, /*#__PURE__*/React__default['default'].createElement(TriggerPipelineOnCallback, {
     callback: updateCallbackRef
-  }), children)
+  }), children);
 }
 
-module.exports = NestedAsyncPipeline
-// # sourceMappingURL=NestedAsyncPipeline.js.map
+module.exports = NestedAsyncPipeline;
+//# sourceMappingURL=NestedAsyncPipeline.js.map

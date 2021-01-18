@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import useWillPipe from '../hooks/use-will-pipe'
 import Pipeline from './Pipeline'
 import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback'
-import get from 'lodash/get'
+import { get } from 'lodash'
 
 export default function ConditionalNestedPipeline ({ children, when, matches }) {
   const callbackRef = React.useRef(null)

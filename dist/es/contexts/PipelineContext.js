@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-const PipelineContext = /* #__PURE__ */React.createContext(null)
-const Provider = PipelineContext.Provider
-const Consumer = PipelineContext.Consumer
+var PipelineContext = /*#__PURE__*/React.createContext(null);
+var Provider = PipelineContext.Provider;
+var Consumer = PipelineContext.Consumer;
 
-export default PipelineContext
-export { Consumer, Provider }
-// # sourceMappingURL=PipelineContext.js.map
+export default PipelineContext;
+export { Consumer, Provider };
+//# sourceMappingURL=PipelineContext.js.map

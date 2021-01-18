@@ -1,43 +1,35 @@
-'use strict'
+'use strict';
 
-const React = require('react')
-const _rollupPluginBabelHelpers = require('../_virtual/_rollupPluginBabelHelpers.js')
-const usePipeline = require('./use-pipeline.js')
+var React = require('react');
+var _rollupPluginBabelHelpers = require('../_virtual/_rollupPluginBabelHelpers.js');
+var usePipeline = require('./use-pipeline.js');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { default: e } }
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-const React__default = /* #__PURE__ */_interopDefaultLegacy(React)
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
-function useIsPiping () {
-  const pipeline = usePipeline()
+function useIsPiping() {
+  var pipeline = usePipeline();
 
   if (pipeline === null) {
-    throw new Error('useIsPiping hook are used outside the scope of a pipeline')
+    throw new Error('useIsPiping hook are used outside the scope of a pipeline');
   }
 
-  const boxedValue = pipeline.isPiping
+  var _React$useState = React__default['default'].useState(pipeline.isPiping),
+      _React$useState2 = _rollupPluginBabelHelpers.slicedToArray(_React$useState, 2),
+      value = _React$useState2[0],
+      setValue = _React$useState2[1];
 
-  const _React$useState = React__default.default.useState(boxedValue.get())
-  const _React$useState2 = _rollupPluginBabelHelpers.slicedToArray(_React$useState, 2)
-  const value = _React$useState2[0]
-  const setValue = _React$useState2[1]
-
-  React__default.default.useEffect(function () {
-    const disposer = boxedValue.observe(function () {
-      const currentBoxedValue = boxedValue.get()
-      setValue(currentBoxedValue)
-    })
+  React__default['default'].useEffect(function () {
+    var disposer = pipeline.onIsPipingChange(function (isPipingValue) {
+      setValue(isPipingValue);
+    });
     return function () {
-      disposer()
-    }
-  }, [boxedValue])
-
-  function setValueOverride (val) {
-    boxedValue.set(val)
-  }
-
-  return [value, setValueOverride]
+      disposer();
+    };
+  }, [pipeline]);
+  return [value, setValue];
 }
 
-module.exports = useIsPiping
-// # sourceMappingURL=use-is-piping.js.map
+module.exports = useIsPiping;
+//# sourceMappingURL=use-is-piping.js.map

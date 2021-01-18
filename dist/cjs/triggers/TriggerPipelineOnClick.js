@@ -1,39 +1,62 @@
-'use strict'
+'use strict';
 
-const React = require('react')
-const usePipeline = require('../hooks/use-pipeline.js')
-const useIsPiping = require('../hooks/use-is-piping.js')
+var React = require('react');
+var usePipeline = require('../hooks/use-pipeline.js');
+var PropTypes = require('prop-types');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { default: e } }
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-const React__default = /* #__PURE__ */_interopDefaultLegacy(React)
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
 
-function TriggerPipelineOnClick (_ref) {
-  const children = _ref.children
-  const pipeline = usePipeline()
-  const isPiping = useIsPiping()
+function TriggerPipelineOnClick(_ref) {
+  var children = _ref.children,
+      _ref$onlyTriggerWhenI = _ref.onlyTriggerWhenIdle,
+      onlyTriggerWhenIdle = _ref$onlyTriggerWhenI === void 0 ? true : _ref$onlyTriggerWhenI;
+  var pipeline = usePipeline();
+  var isCurrentlyPipingRef = React__default['default'].useRef(false);
 
-  const handleClick = function handleClick (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    e.persist()
-    const payload = {
-      clickEvent: e
+  var handleClick = function handleClick(e) {
+    if (e) {
+      if (typeof e.preventDefault === 'function') {
+        e.preventDefault();
+      }
+
+      if (typeof e.stopPropagation === 'function') {
+        e.stopPropagation();
+      }
+
+      if (typeof e.persist === 'function') {
+        e.persist();
+      }
     }
-    pipeline.trigger(payload).catch(function (err) {
-      return console.log('caught error', err)
-    })
-  }
 
-  return /* #__PURE__ */React__default.default.createElement(React__default.default.Fragment, null, React__default.default.Children.map(children, function (child) {
-    return /* #__PURE__ */React__default.default.cloneElement(child, {
-      onClick: function onClick (e) {
-        return handleClick(e)
-      },
-      disabled: isPiping
-    })
-  }))
+    if (onlyTriggerWhenIdle === true && isCurrentlyPipingRef.current === true) {
+      return;
+    }
+
+    isCurrentlyPipingRef.current = true;
+    var payload = {
+      clickEvent: e
+    };
+    pipeline.trigger(payload).then(function (p) {
+      isCurrentlyPipingRef.current = false;
+      return p;
+    }).catch(function (err) {
+      isCurrentlyPipingRef.current = false;
+    });
+  };
+
+  return React__default['default'].Children.map(children, function (child) {
+    return /*#__PURE__*/React__default['default'].cloneElement(child, {
+      onClick: handleClick
+    });
+  });
 }
 
-module.exports = TriggerPipelineOnClick
-// # sourceMappingURL=TriggerPipelineOnClick.js.map
+TriggerPipelineOnClick.propTypes = {
+  onlyTriggerWhenIdle: PropTypes__default['default'].bool
+};
+
+module.exports = TriggerPipelineOnClick;
+//# sourceMappingURL=TriggerPipelineOnClick.js.map
