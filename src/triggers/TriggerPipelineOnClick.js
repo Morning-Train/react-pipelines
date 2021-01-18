@@ -40,13 +40,9 @@ function TriggerPipelineOnClick ({ children, onlyTriggerWhenIdle = true }) {
       })
   }
 
-  return (
-    <>
-      {React.Children.map(children, (child) => (
-        React.cloneElement(child, { onClick: handleClick })
-      ))}
-    </>
-  )
+  return React.Children.map(children, (child) => (
+    React.cloneElement(child, { onClick: handleClick })
+  ))
 }
 
 TriggerPipelineOnClick.propTypes = {
