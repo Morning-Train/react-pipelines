@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import {
-  Pipeline, TriggerPipelineOnCallback, CallbackOnPipe, ConditionalAsyncNestedPipeline
+  Pipeline, TriggerPipelineOnCallback, CallbackOnPipe, ConditionalNestedAsyncPipeline
 } from '..'
 
 it('conditional nested pipeline does not run in pipeline (boolean)', () => {
@@ -16,10 +16,10 @@ it('conditional nested pipeline does not run in pipeline (boolean)', () => {
   mount(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
-      <ConditionalAsyncNestedPipeline when='run_conditional' matches>
+      <ConditionalNestedAsyncPipeline when='run_conditional' matches>
         <CallbackOnPipe callback={() => Promise.resolve({ test: 'data' })} />
         <CallbackOnPipe callback={mockCallBack} />
-      </ConditionalAsyncNestedPipeline>
+      </ConditionalNestedAsyncPipeline>
     </Pipeline>
   )
 
@@ -44,10 +44,10 @@ it('conditional nested pipeline runs in pipeline (boolean)', () => {
   mount(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
-      <ConditionalAsyncNestedPipeline when='run_conditional' matches>
+      <ConditionalNestedAsyncPipeline when='run_conditional' matches>
         <CallbackOnPipe callback={() => Promise.resolve({ test: 'data' })} />
         <CallbackOnPipe callback={mockCallBack} />
-      </ConditionalAsyncNestedPipeline>
+      </ConditionalNestedAsyncPipeline>
     </Pipeline>
   )
 
@@ -72,10 +72,10 @@ it('conditional nested pipeline runs in pipeline (string)', () => {
   mount(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
-      <ConditionalAsyncNestedPipeline when='run_conditional' matches='true'>
+      <ConditionalNestedAsyncPipeline when='run_conditional' matches='true'>
         <CallbackOnPipe callback={() => Promise.resolve({ test: 'data' })} />
         <CallbackOnPipe callback={mockCallBack} />
-      </ConditionalAsyncNestedPipeline>
+      </ConditionalNestedAsyncPipeline>
     </Pipeline>
   )
 
@@ -100,10 +100,10 @@ it('conditional nested pipeline runs in pipeline (number)', () => {
   mount(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
-      <ConditionalAsyncNestedPipeline when='run_conditional' matches={123}>
+      <ConditionalNestedAsyncPipeline when='run_conditional' matches={123}>
         <CallbackOnPipe callback={() => Promise.resolve({ test: 'data' })} />
         <CallbackOnPipe callback={mockCallBack} />
-      </ConditionalAsyncNestedPipeline>
+      </ConditionalNestedAsyncPipeline>
     </Pipeline>
   )
 

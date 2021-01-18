@@ -1,5 +1,5 @@
 export { default as AsyncPipeline } from './AsyncPipeline'
-export { default as ConditionalAsyncNestedPipeline } from './ConditionalAsyncNestedPipeline'
+export { default as ConditionalNestedAsyncPipeline } from './ConditionalNestedAsyncPipeline'
 export { default as ConditionalNestedPipeline } from './ConditionalNestedPipeline'
 export { default as NestedAsyncPipeline } from './NestedAsyncPipeline'
 export { default as NestedPipeline } from './NestedPipeline'

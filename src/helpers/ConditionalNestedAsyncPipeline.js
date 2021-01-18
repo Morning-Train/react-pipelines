@@ -5,7 +5,7 @@ import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback'
 import get from 'lodash/get'
 import AsyncPipeline from './AsyncPipeline'
 
-export default function ConditionalAsyncNestedPipeline ({ children, when, matches }) {
+export default function ConditionalNestedAsyncPipeline ({ children, when, matches }) {
   const callbackRef = React.useRef(null)
 
   const updateCallbackRef = (callback) => {
@@ -42,7 +42,7 @@ export default function ConditionalAsyncNestedPipeline ({ children, when, matche
   )
 }
 
-ConditionalAsyncNestedPipeline.propTypes = {
+ConditionalNestedAsyncPipeline.propTypes = {
   when: PropTypes.string.isRequired,
   matches: PropTypes.any
 }
