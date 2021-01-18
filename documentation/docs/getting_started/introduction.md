@@ -39,6 +39,7 @@ This is the current section. Besides a short introduction, it also contains [ins
 This section highlights the base pipeline components: 
 [Pipeline](../pipelines/pipeline), [AsyncPipeline](../pipelines/async-pipeline),
 [NestedPipeline](../pipelines/nested-pipeline), and [NestedAsyncPipeline](../pipelines/nested-async-pipeline).
+[ConditionalNestedPipeline](../pipelines/conditional-nested-pipeline), and [ConditionalNestedAsyncPipeline](../conditional-pipelines/nested-async-pipeline).
 
 ### Pipes
 The section about pipes contains details about the following base pipes provided by the package:

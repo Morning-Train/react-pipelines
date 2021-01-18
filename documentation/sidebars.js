@@ -10,7 +10,9 @@ module.exports = {
       'pipelines/pipeline',
       'pipelines/async-pipeline',
       'pipelines/nested-pipeline',
-      'pipelines/nested-async-pipeline'
+      'pipelines/nested-async-pipeline',
+      'pipelines/conditional-nested-pipeline',
+      'pipelines/conditional-nested-async-pipeline'
     ],
     Pipes: [
       'pipes/callback-on-pipe'
