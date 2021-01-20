@@ -17,6 +17,11 @@ function Pipeline(_ref) {
       triggerOnIsPipingChange = _useEventListeners2[0],
       onIsPipingChange = _useEventListeners2[1];
 
+  var _useEventListeners3 = useEventListeners(),
+      _useEventListeners4 = _slicedToArray(_useEventListeners3, 2),
+      triggerOnError = _useEventListeners4[0],
+      onError = _useEventListeners4[1];
+
   var pipeline = {
     onIsPipingChange: onIsPipingChange
   };
@@ -50,11 +55,13 @@ function Pipeline(_ref) {
       }).catch(function (err) {
         isPipingRef.current = false;
         triggerOnIsPipingChange(isPipingRef.current);
+        triggerOnError(err);
         reject(err);
       });
     });
   }, [pipesOrder, pipes]);
   pipeline.isPiping = isPipingRef.current;
+  pipeline.onError = onError;
   return /*#__PURE__*/React.createElement(PipelineContext.Provider, {
     value: pipeline
   }, children);
