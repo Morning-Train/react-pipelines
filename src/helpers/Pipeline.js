@@ -13,6 +13,7 @@ function Pipeline ({ children }) {
   const pipesOrder = pipesOrderRef.current
 
   const [triggerOnIsPipingChange, onIsPipingChange] = useEventListeners()
+  const [triggerOnError, onError] = useEventListeners()
 
   const pipeline = {
     onIsPipingChange
@@ -50,12 +51,15 @@ function Pipeline ({ children }) {
         .catch((err) => {
           isPipingRef.current = false
           triggerOnIsPipingChange(isPipingRef.current)
+          triggerOnError(err)
           reject(err)
         })
     })
   }, [pipesOrder, pipes])
 
   pipeline.isPiping = isPipingRef.current
+
+  pipeline.onError = onError
 
   return (
     <PipelineContext.Provider value={pipeline}>
