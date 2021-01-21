@@ -12,8 +12,22 @@ export default function ConditionalNestedAsyncPipeline ({ children, when, matche
     callbackRef.current = callback
   }
 
+  function check (payload) {
+    const value = get(payload, when)
+
+    if (value === matches) {
+      return true
+    }
+
+    if (typeof matches === 'function') {
+      return matches(value)
+    }
+
+    return false
+  }
+
   useWillPipe((payload) => new Promise((resolve, reject) => {
-    if (get(payload, when) === matches) {
+    if (check(payload)) {
       Promise.resolve(callbackRef.current(payload))
         .then((p = {}) => {
           let finalP = { ...payload }
