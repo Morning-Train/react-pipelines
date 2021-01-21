@@ -16,9 +16,23 @@ function ConditionalNestedAsyncPipeline(_ref) {
     callbackRef.current = callback;
   };
 
+  function check(payload) {
+    var value = get(payload, when);
+
+    if (value === matches) {
+      return true;
+    }
+
+    if (typeof matches === 'function') {
+      return matches(value);
+    }
+
+    return false;
+  }
+
   useWillPipe(function (payload) {
     return new Promise(function (resolve, reject) {
-      if (get(payload, when) === matches) {
+      if (check(payload)) {
         Promise.resolve(callbackRef.current(payload)).then(function () {
           var p = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
