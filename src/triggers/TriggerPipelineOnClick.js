@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import usePipeline from '../hooks/use-pipeline'
 
-function TriggerPipelineOnClick ({ children, onlyTriggerWhenIdle = true }) {
+function TriggerPipelineOnClick ({ children, onlyTriggerWhenIdle = true, preventDefault = true }) {
   const pipeline = usePipeline()
 
   const isCurrentlyPipingRef = React.useRef(false)
 
   const handleClick = (e) => {
-    if (e) {
+    if (e && preventDefault === true) {
       if (typeof e.preventDefault === 'function') {
         e.preventDefault()
       }
@@ -46,7 +46,8 @@ function TriggerPipelineOnClick ({ children, onlyTriggerWhenIdle = true }) {
 }
 
 TriggerPipelineOnClick.propTypes = {
-  onlyTriggerWhenIdle: PropTypes.bool
+  onlyTriggerWhenIdle: PropTypes.bool,
+  preventDefault: PropTypes.bool
 }
 
 export default TriggerPipelineOnClick
