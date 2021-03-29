@@ -35,3 +35,31 @@ it('nested pipeline runs in pipeline', () => {
       expect(p.test).toBe('data')
     })
 })
+
+it('nested pipeline runs in pipeline using base pipeline', () => {
+  let trigger = null
+
+  const mockCallBack = jest.fn()
+
+  const setTrigger = (callback) => {
+    trigger = callback
+  }
+
+  mount(
+    <Pipeline>
+      <TriggerPipelineOnCallback callback={setTrigger} />
+      <Pipeline nested>
+        <CallbackOnPipe callback={() => Promise.resolve({ test: 'data' })} />
+        <CallbackOnPipe callback={mockCallBack} />
+      </Pipeline>
+    </Pipeline>
+  )
+
+  expect.assertions(2)
+
+  return trigger()
+    .then((p) => {
+      expect(mockCallBack.mock.calls.length).toEqual(1)
+      expect(p.test).toBe('data')
+    })
+})

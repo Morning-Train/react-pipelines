@@ -34,6 +34,32 @@ it('async pipeline runs all pipes (3)', () => {
     })
 })
 
+it('async pipeline runs all pipes (3) using base pipeline', () => {
+  const mockCallBack = jest.fn()
+
+  let trigger = null
+
+  const setTrigger = (callback) => {
+    trigger = callback
+  }
+
+  mount(
+    <Pipeline async>
+      <TriggerPipelineOnCallback callback={setTrigger} />
+      <CallbackOnPipe callback={mockCallBack} />
+      <CallbackOnPipe callback={mockCallBack} />
+      <CallbackOnPipe callback={mockCallBack} />
+    </Pipeline>
+  )
+
+  expect.assertions(1)
+
+  return trigger()
+    .then(() => {
+      expect(mockCallBack.mock.calls.length).toEqual(3)
+    })
+})
+
 it('async pipeline runs all pipes (5)', () => {
   const mockCallBack = jest.fn()
 
