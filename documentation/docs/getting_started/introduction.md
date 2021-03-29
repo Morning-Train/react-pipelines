@@ -3,16 +3,16 @@ title: Introduction
 slug: /
 ---
 
-This is an opinionated React package that follows a declarative and decoupled approach
-to making React components more maintainable.
+**React Pipelines** is a React package that follows a declarative and decoupled approach
+to making React components more maintainable. In some ways, it is more like a micro framework.
 The package helps the developer achieve this by being a utility package
 that helps to create and decouple complex flows of business logic.
 
 In short - this package is a collection of React components and hooks
 that enables decoupling business logic into smaller resuable tasks.
 
-This is accomplished by wrapping each self-contained section of the logic of a flow 
-into multiple smaller React components - called a `pipe` in our context.
+This is accomplished by wrapping each self-contained section of logic 
+into multiple smaller React components - we call this a `pipe` (since it will be a part of a larger pipeline).
 
 The timing of the executing of the pipe logic is then determined by where in our `pipeline`
 the pipe is rendered. A `pipeline` is a React component that wraps and tracks the order of 

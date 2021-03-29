@@ -14,7 +14,8 @@ module.exports = {
       'pipelines/conditional-nested-pipeline',
       'pipelines/conditional-nested-async-pipeline',
       'pipelines/error-pipeline',
-      'pipelines/error-async-pipeline'
+      'pipelines/error-async-pipeline',
+      'pipelines/on-click-pipeline'
     ],
     Pipes: [
       'pipes/callback-on-pipe'
