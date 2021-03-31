@@ -6,11 +6,12 @@ export default function OnClickPipeline ({
   trigger,
   async = false,
   nested = false,
-  children
+  children,
+  ...forwardProps
 }) {
   return (
     <Pipeline async={async} nested={nested}>
-      <TriggerPipelineOnClick>
+      <TriggerPipelineOnClick {...forwardProps}>
         {trigger}
       </TriggerPipelineOnClick>
       {children}
