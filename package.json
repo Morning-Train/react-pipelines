@@ -1,6 +1,6 @@
 {
     "name": "@morningtrain/react-pipelines",
-    "version": "1.6.0",
+    "version": "1.6.1",
     "description": "",
     "scripts": {
         "test": "cross-env CI=1 react-scripts test --env=jsdom",
