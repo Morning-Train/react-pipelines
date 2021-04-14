@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import useWillPipe from '../hooks/use-will-pipe'
 import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback'
-import get from 'lodash/get'
+import { get } from 'lodash'
 import AsyncPipeline from './AsyncPipeline'
 
 export default function ConditionalNestedAsyncPipeline ({ children, when, matches }) {

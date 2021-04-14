@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import uniqueId from 'lodash/uniqueId'
+import { uniqueId } from 'lodash'
 import { Pipeline, CallbackOnPipe, TriggerPipelineOnCallback } from '../..'
 import sequentialPipelineTrigger from '../../utilities/sequentialPipelineTrigger'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import uniqueId from 'lodash/uniqueId'
+import { uniqueId } from 'lodash'
 import sequentialPipelineTrigger from '../utilities/sequentialPipelineTrigger'
 
 it('sequential pipeline trigger returns function', () => {

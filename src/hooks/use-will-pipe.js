@@ -1,5 +1,5 @@
 import React from 'react'
-import uniqueId from 'lodash/uniqueId'
+import { uniqueId } from 'lodash'
 import usePipeline from './use-pipeline'
 
 export default function useWillPipe (callback, dependencies = []) {

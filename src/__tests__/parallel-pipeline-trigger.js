@@ -1,5 +1,5 @@
 import React from 'react'
-import uniqueId from 'lodash/uniqueId'
+import { uniqueId } from 'lodash'
 import parallelPipelineTrigger from '../utilities/parallelPipelineTrigger'
 
 it('parallel pipeline trigger returns function', () => {
