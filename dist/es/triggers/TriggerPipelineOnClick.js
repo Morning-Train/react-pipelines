@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 function TriggerPipelineOnClick(_ref) {
   var children = _ref.children,
       _ref$onlyTriggerWhenI = _ref.onlyTriggerWhenIdle,
-      onlyTriggerWhenIdle = _ref$onlyTriggerWhenI === void 0 ? true : _ref$onlyTriggerWhenI;
+      onlyTriggerWhenIdle = _ref$onlyTriggerWhenI === void 0 ? true : _ref$onlyTriggerWhenI,
+      _ref$preventDefault = _ref.preventDefault,
+      preventDefault = _ref$preventDefault === void 0 ? true : _ref$preventDefault;
   var pipeline = usePipeline();
   var isCurrentlyPipingRef = React.useRef(false);
 
   var handleClick = function handleClick(e) {
-    if (e) {
+    if (e && preventDefault === true) {
       if (typeof e.preventDefault === 'function') {
         e.preventDefault();
       }
@@ -48,7 +50,8 @@ function TriggerPipelineOnClick(_ref) {
 }
 
 TriggerPipelineOnClick.propTypes = {
-  onlyTriggerWhenIdle: PropTypes.bool
+  onlyTriggerWhenIdle: PropTypes.bool,
+  preventDefault: PropTypes.bool
 };
 
 export default TriggerPipelineOnClick;
