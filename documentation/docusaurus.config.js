@@ -28,6 +28,18 @@ module.exports = {
       style: 'dark',
       links: [],
       copyright: `Copyright © ${new Date().getFullYear()} Morningtrain ApS.`
+    },
+    algolia: {
+      apiKey: 'a541fec201cc1ebe4edd2d76ab5f2bd9',
+      indexName: 'react-pipelines',
+
+      // Optional: see doc section below
+      contextualSearch: true,
+
+      // Optional: Algolia search parameters
+      searchParameters: {}
+
+      // ... other Algolia params
     }
   },
   presets: [
