@@ -1,8 +1,8 @@
-import React from './node_modules/react/index.js';
+import React from 'react';
 import { objectSpread2 as _objectSpread2 } from '../_virtual/_rollupPluginBabelHelpers.js';
 import useWillPipe from '../hooks/use-will-pipe.js';
 import AsyncPipeline from './AsyncPipeline.js';
-import PropTypes from './node_modules/prop-types/index.js';
+import PropTypes from 'prop-types';
 import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback.js';
 import get from 'lodash/get';
 

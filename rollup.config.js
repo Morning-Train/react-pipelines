@@ -23,7 +23,7 @@ export default {
       preserveModules: true
     }
   ],
-  external: id => id.includes('lodash'),
+  external: id => id.includes('lodash') || ['react', 'prop-types'].includes(id),
   plugins: [
     autoExternal({
       builtins: false,

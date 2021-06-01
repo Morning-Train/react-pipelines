@@ -1,9 +1,9 @@
 'use strict';
 
-require('./node_modules/react/index.js');
+require('react');
 var _rollupPluginBabelHelpers = require('../_virtual/_rollupPluginBabelHelpers.js');
 var useWillPipe = require('../hooks/use-will-pipe.js');
-var PropTypes = require('./node_modules/prop-types/index.js');
+var PropTypes = require('prop-types');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 

@@ -1,4 +1,4 @@
-import React from './node_modules/react/index.js';
+import React from 'react';
 import { objectSpread2 as _objectSpread2 } from '../_virtual/_rollupPluginBabelHelpers.js';
 import useWillPipe from '../hooks/use-will-pipe.js';
 import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback.js';

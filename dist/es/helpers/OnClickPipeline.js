@@ -1,4 +1,4 @@
-import React from './node_modules/react/index.js';
+import React from 'react';
 import { objectWithoutProperties as _objectWithoutProperties } from '../_virtual/_rollupPluginBabelHelpers.js';
 import Pipeline from './Pipeline.js';
 import TriggerPipelineOnClick from '../triggers/TriggerPipelineOnClick.js';

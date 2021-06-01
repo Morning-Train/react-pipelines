@@ -1,4 +1,4 @@
-import React from './node_modules/react/index.js';
+import React from 'react';
 import AsyncPipeline from './AsyncPipeline.js';
 import SequentialPipeline from './SequentialPipeline.js';
 import NestedAsyncPipeline from './NestedAsyncPipeline.js';

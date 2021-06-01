@@ -1,6 +1,6 @@
 'use strict';
 
-require('./node_modules/react/index.js');
+require('react');
 var _rollupPluginBabelHelpers = require('../_virtual/_rollupPluginBabelHelpers.js');
 var useIsPiping = require('../hooks/use-is-piping.js');
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('./node_modules/react/index.js');
+var React = require('react');
 var PipelineContext = require('../contexts/PipelineContext.js');
 var _rollupPluginBabelHelpers = require('../_virtual/_rollupPluginBabelHelpers.js');
 var parallelPipelineTrigger = require('../utilities/parallelPipelineTrigger.js');

@@ -1,4 +1,4 @@
-import React from './node_modules/react/index.js';
+import React from 'react';
 
 var PipelineContext = /*#__PURE__*/React.createContext(null);
 var Provider = PipelineContext.Provider;

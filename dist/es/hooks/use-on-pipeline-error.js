@@ -1,4 +1,4 @@
-import React from './node_modules/react/index.js';
+import React from 'react';
 import usePipeline from './use-pipeline.js';
 
 function useOnPipelineError(callback) {

@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('./node_modules/react/index.js');
+var React = require('react');
 var _rollupPluginBabelHelpers = require('../_virtual/_rollupPluginBabelHelpers.js');
 var useWillPipe = require('../hooks/use-will-pipe.js');
 var AsyncPipeline = require('./AsyncPipeline.js');

@@ -1,6 +1,6 @@
-import React from './node_modules/react/index.js';
+import React from 'react';
 import usePipeline from '../hooks/use-pipeline.js';
-import PropTypes from './node_modules/prop-types/index.js';
+import PropTypes from 'prop-types';
 
 function TriggerPipelineOnClick(_ref) {
   var children = _ref.children,

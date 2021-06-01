@@ -1,4 +1,4 @@
-import React from './node_modules/react/index.js';
+import React from 'react';
 
 function useEventListeners() {
   var callbacks_ref = React.useRef([]);

@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('./node_modules/react/index.js');
+var React = require('react');
 var AsyncPipeline = require('./AsyncPipeline.js');
 var SequentialPipeline = require('./SequentialPipeline.js');
 var NestedAsyncPipeline = require('./NestedAsyncPipeline.js');
