@@ -1,6 +1,6 @@
-import React from 'react';
+import React from './node_modules/react/index.js';
 import usePipeline from './use-pipeline.js';
-import { uniqueId } from 'lodash';
+import uniqueId from 'lodash/uniqueId';
 
 function useWillPipe(callback) {
   var dependencies = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];

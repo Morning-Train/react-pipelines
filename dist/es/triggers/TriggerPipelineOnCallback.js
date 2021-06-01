@@ -1,6 +1,6 @@
-import React from 'react';
+import React from './node_modules/react/index.js';
 import usePipeline from '../hooks/use-pipeline.js';
-import PropTypes from 'prop-types';
+import PropTypes from './node_modules/prop-types/index.js';
 
 function TriggerPipelineOnCallback(_ref) {
   var callback = _ref.callback;

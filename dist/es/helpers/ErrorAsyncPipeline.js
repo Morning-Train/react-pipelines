@@ -1,4 +1,4 @@
-import React from 'react';
+import React from './node_modules/react/index.js';
 import useOnPipelineError from '../hooks/use-on-pipeline-error.js';
 import AsyncPipeline from './AsyncPipeline.js';
 import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback.js';

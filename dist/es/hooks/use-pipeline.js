@@ -1,4 +1,4 @@
-import React from 'react';
+import React from './node_modules/react/index.js';
 import PipelineContext from '../contexts/PipelineContext.js';
 
 function usePipeline() {

@@ -1,10 +1,10 @@
-import React from 'react';
+import React from './node_modules/react/index.js';
 import { objectSpread2 as _objectSpread2 } from '../_virtual/_rollupPluginBabelHelpers.js';
-import { get } from 'lodash';
 import useWillPipe from '../hooks/use-will-pipe.js';
 import AsyncPipeline from './AsyncPipeline.js';
-import PropTypes from 'prop-types';
+import PropTypes from './node_modules/prop-types/index.js';
 import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback.js';
+import get from 'lodash/get';
 
 function ConditionalNestedAsyncPipeline(_ref) {
   var children = _ref.children,

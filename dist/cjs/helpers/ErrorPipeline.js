@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react');
+var React = require('./node_modules/react/index.js');
 var useOnPipelineError = require('../hooks/use-on-pipeline-error.js');
 var TriggerPipelineOnCallback = require('../triggers/TriggerPipelineOnCallback.js');
 var Pipeline = require('./Pipeline.js');

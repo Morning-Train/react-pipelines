@@ -1,4 +1,4 @@
-import 'react';
+import './node_modules/react/index.js';
 import { slicedToArray as _slicedToArray } from '../_virtual/_rollupPluginBabelHelpers.js';
 import useIsPiping from '../hooks/use-is-piping.js';
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react');
+var React = require('./node_modules/react/index.js');
 var usePipeline = require('./use-pipeline.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }

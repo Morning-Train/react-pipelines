@@ -1,7 +1,7 @@
-import 'react';
+import './node_modules/react/index.js';
 import { objectSpread2 as _objectSpread2 } from '../_virtual/_rollupPluginBabelHelpers.js';
 import useWillPipe from '../hooks/use-will-pipe.js';
-import PropTypes from 'prop-types';
+import PropTypes from './node_modules/prop-types/index.js';
 
 function CallbackOnPipe(_ref) {
   var callback = _ref.callback;

@@ -1,17 +1,18 @@
 'use strict';
 
-var React = require('react');
+var React = require('./node_modules/react/index.js');
 var _rollupPluginBabelHelpers = require('../_virtual/_rollupPluginBabelHelpers.js');
-var lodash = require('lodash');
 var useWillPipe = require('../hooks/use-will-pipe.js');
-var PropTypes = require('prop-types');
+var PropTypes = require('./node_modules/prop-types/index.js');
 var TriggerPipelineOnCallback = require('../triggers/TriggerPipelineOnCallback.js');
+var get = require('lodash/get');
 var Pipeline = require('./Pipeline.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
+var get__default = /*#__PURE__*/_interopDefaultLegacy(get);
 
 function ConditionalNestedPipeline(_ref) {
   var children = _ref.children,
@@ -24,7 +25,7 @@ function ConditionalNestedPipeline(_ref) {
   };
 
   function check(payload) {
-    var value = lodash.get(payload, when);
+    var value = get__default['default'](payload, when);
 
     if (value === matches) {
       return true;

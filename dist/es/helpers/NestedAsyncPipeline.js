@@ -1,4 +1,4 @@
-import React from 'react';
+import React from './node_modules/react/index.js';
 import { objectSpread2 as _objectSpread2 } from '../_virtual/_rollupPluginBabelHelpers.js';
 import useWillPipe from '../hooks/use-will-pipe.js';
 import AsyncPipeline from './AsyncPipeline.js';
