@@ -23,6 +23,7 @@ export default {
       preserveModules: true
     }
   ],
+  external: id => id.includes('lodash'),
   plugins: [
     autoExternal({
       builtins: false,

@@ -1,8 +1,6 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
-import { uniqueId } from 'lodash'
-import { Pipeline, CallbackOnPipe, TriggerPipelineOnCallback } from '../..'
-import sequentialPipelineTrigger from '../../utilities/sequentialPipelineTrigger'
+import { mount, shallow } from 'enzyme'
+import { CallbackOnPipe, Pipeline, TriggerPipelineOnCallback } from '../..'
 
 it('renders CallbackOnPipe without crashing', () => {
   const mockCallBack = jest.fn()
