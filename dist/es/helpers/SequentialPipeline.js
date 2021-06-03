@@ -23,7 +23,12 @@ function SequentialPipeline(_ref) {
       onError = _useEventListeners4[1];
 
   var pipeline = {
-    onIsPipingChange: onIsPipingChange
+    onIsPipingChange: onIsPipingChange,
+
+    get isPiping() {
+      return isPipingRef.current;
+    }
+
   };
 
   pipeline.pipe = function (uuid, pipe) {
@@ -60,7 +65,6 @@ function SequentialPipeline(_ref) {
       });
     });
   }, [pipesOrder, pipes]);
-  pipeline.isPiping = isPipingRef.current;
   pipeline.onError = onError;
   return /*#__PURE__*/React.createElement(PipelineContext.Provider, {
     value: pipeline
