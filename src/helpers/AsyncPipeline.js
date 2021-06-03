@@ -16,7 +16,10 @@ function AsyncPipeline ({ children }) {
   const [triggerOnError, onError] = useEventListeners()
 
   const pipeline = {
-    onIsPipingChange
+    onIsPipingChange,
+    get isPiping() {
+      return isPipingRef.current
+    }
   }
 
   pipeline.pipe = (uuid, pipe) => {
@@ -56,8 +59,6 @@ function AsyncPipeline ({ children }) {
         })
     })
   }, [pipesOrder, pipes])
-
-  pipeline.isPiping = isPipingRef.current
 
   pipeline.onError = onError
 
