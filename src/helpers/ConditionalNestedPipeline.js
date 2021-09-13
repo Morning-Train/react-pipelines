@@ -12,7 +12,7 @@ export default function ConditionalNestedPipeline ({ children, when, matches }) 
     callbackRef.current = callback
   }
 
-  function check (payload) {
+  const check = React.useCallback(payload => {
     const value = get(payload, when)
 
     if (value === matches) {
@@ -24,7 +24,7 @@ export default function ConditionalNestedPipeline ({ children, when, matches }) 
     }
 
     return false
-  }
+  }, [when, matches])
 
   useWillPipe((payload) => new Promise((resolve, reject) => {
     if (check(payload)) {
@@ -38,7 +38,7 @@ export default function ConditionalNestedPipeline ({ children, when, matches }) 
     } else {
       resolve(payload)
     }
-  }))
+  }), [check])
 
   return (
     <Pipeline>
