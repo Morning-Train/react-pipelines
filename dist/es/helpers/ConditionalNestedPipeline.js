@@ -16,7 +16,7 @@ function ConditionalNestedPipeline(_ref) {
     callbackRef.current = callback;
   };
 
-  function check(payload) {
+  var check = React.useCallback(function (payload) {
     var value = get(payload, when);
 
     if (value === matches) {
@@ -28,8 +28,7 @@ function ConditionalNestedPipeline(_ref) {
     }
 
     return false;
-  }
-
+  }, [when, matches]);
   useWillPipe(function (payload) {
     return new Promise(function (resolve, reject) {
       if (check(payload)) {
@@ -43,7 +42,7 @@ function ConditionalNestedPipeline(_ref) {
         resolve(payload);
       }
     });
-  });
+  }, [check]);
   return /*#__PURE__*/React.createElement(Pipeline, null, /*#__PURE__*/React.createElement(TriggerPipelineOnCallback, {
     callback: updateCallbackRef
   }), children);
