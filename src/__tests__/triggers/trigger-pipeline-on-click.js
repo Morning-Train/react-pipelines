@@ -1,12 +1,13 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import '@testing-library/jest-dom/extend-expect'
+import {render, screen} from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import { CallbackOnPipe, Pipeline, TriggerPipelineOnClick } from '../..'
 
 it('Can trigger pipeline on click once', async () => {
   const mockCallBack = jest.fn()
 
-  const wrapper = mount(
+  const wrapper = render(
     <Pipeline>
       <TriggerPipelineOnClick>
         <button>Click me</button>
@@ -31,7 +32,7 @@ it('Can trigger pipeline on click once', async () => {
 it('Can trigger pipeline on click once and pass along clickEvent', async () => {
   const mockCallBack = jest.fn()
 
-  const wrapper = mount(
+  const wrapper = render(
     <Pipeline>
       <TriggerPipelineOnClick>
         <button>Click me</button>
@@ -57,7 +58,7 @@ it('Can trigger pipeline on click once and pass along clickEvent', async () => {
 it('Can trigger pipeline once on click multiple times ', async () => {
   const mockCallBack = jest.fn()
 
-  const wrapper = mount(
+  const wrapper = render(
     <Pipeline>
       <TriggerPipelineOnClick>
         <button>Click me</button>
@@ -84,7 +85,7 @@ it('Can trigger pipeline once on click multiple times ', async () => {
 it('Can trigger pipeline on click multiple times ', async () => {
   const mockCallBack = jest.fn()
 
-  const wrapper = mount(
+  const wrapper = render(
     <Pipeline>
       <TriggerPipelineOnClick onlyTriggerWhenIdle={false}>
         <button>Click me</button>
@@ -113,7 +114,7 @@ it('Can trigger pipeline on click after error in pipeline ', async () => {
 
   let count = 0
 
-  const wrapper = mount(
+  const wrapper = render(
     <Pipeline>
       <TriggerPipelineOnClick>
         <button>Click me</button>

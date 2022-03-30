@@ -1,5 +1,6 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import '@testing-library/jest-dom/extend-expect'
+import {render, screen} from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import {
   AsyncPipeline,
@@ -10,11 +11,11 @@ import {
 } from '../..'
 
 it('crashes when rendering WhenIsNotPiping without pipeline', () => {
-  expect(() => shallow(<WhenIsNotPiping>test</WhenIsNotPiping>)).toThrow()
+  expect(() => render(<WhenIsNotPiping>test</WhenIsNotPiping>)).toThrow()
 })
 
 it('renders WhenIsNotPiping inside pipeline without crashing', () => {
-  mount(
+  render(
     <Pipeline>
       <WhenIsNotPiping>test</WhenIsNotPiping>
     </Pipeline>
@@ -22,7 +23,7 @@ it('renders WhenIsNotPiping inside pipeline without crashing', () => {
 })
 
 it('renders WhenIsNotPiping inside async pipeline without crashing', () => {
-  mount(
+  render(
     <AsyncPipeline>
       <WhenIsNotPiping>test</WhenIsNotPiping>
     </AsyncPipeline>
@@ -42,7 +43,7 @@ it('WhenIsNotPiping change state when piping', async () => {
 
   expect.assertions(5)
 
-  const wrapper = mount(
+  const wrapper = render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={mockCallBack} />

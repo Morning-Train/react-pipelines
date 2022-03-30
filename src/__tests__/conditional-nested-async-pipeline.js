@@ -1,5 +1,6 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import '@testing-library/jest-dom/extend-expect'
+import {render, screen} from '@testing-library/react'
 import {
   Pipeline, TriggerPipelineOnCallback, CallbackOnPipe, ConditionalNestedAsyncPipeline
 } from '..'
@@ -13,7 +14,7 @@ it('conditional nested pipeline does not run in pipeline (boolean)', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <ConditionalNestedAsyncPipeline when='run_conditional' matches>
@@ -41,7 +42,7 @@ it('conditional nested pipeline runs in pipeline (boolean)', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <ConditionalNestedAsyncPipeline when='run_conditional' matches>
@@ -69,7 +70,7 @@ it('conditional nested pipeline runs in pipeline (string)', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <ConditionalNestedAsyncPipeline when='run_conditional' matches='true'>
@@ -97,7 +98,7 @@ it('conditional nested pipeline runs in pipeline (number)', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <ConditionalNestedAsyncPipeline when='run_conditional' matches={123}>

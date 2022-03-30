@@ -1,16 +1,17 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import '@testing-library/jest-dom/extend-expect'
+import {render, screen} from '@testing-library/react'
 import { CallbackOnPipe, Pipeline, TriggerPipelineOnCallback } from '../..'
 
 it('renders CallbackOnPipe without crashing', () => {
   const mockCallBack = jest.fn()
-  shallow(<CallbackOnPipe callback={mockCallBack} />)
+  render(<CallbackOnPipe callback={mockCallBack} />)
   expect(mockCallBack.mock.calls.length).toEqual(0)
 })
 
 it('renders CallbackOnPipe inside pipeline without crashing', () => {
   const mockCallBack = jest.fn()
-  shallow(
+  render(
     <Pipeline>
       <CallbackOnPipe callback={mockCallBack} />
     </Pipeline>
@@ -27,7 +28,7 @@ it('CallbackOnPipe triggers once', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={mockCallBack} />
@@ -51,7 +52,7 @@ it('CallbackOnPipe triggers twice', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={mockCallBack} />
@@ -74,7 +75,7 @@ it('CallbackOnPipe can throw', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={() => {
@@ -98,7 +99,7 @@ it('CallbackOnPipe can throw and block', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={() => {
@@ -124,7 +125,7 @@ it('CallbackOnPipe passes along payload', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={(p) => Promise.resolve(p)} />
