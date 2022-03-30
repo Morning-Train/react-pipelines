@@ -10,8 +10,9 @@ import {
   WhenIsNotPiping
 } from '../..'
 
-it('crashes when rendering WhenIsNotPiping without pipeline', () => {
-  expect(() => render(<WhenIsNotPiping>test</WhenIsNotPiping>)).toThrow()
+it('renders without crashing', () => {
+  render(<WhenIsNotPiping>test</WhenIsNotPiping>)
+  expect(screen.getByText(/test/i)).toHaveTextContent('test')
 })
 
 it('renders WhenIsNotPiping inside pipeline without crashing', () => {
@@ -44,34 +45,31 @@ it('WhenIsNotPiping change state when piping', async () => {
   expect.assertions(5)
 
   const wrapper = render(
-    <Pipeline>
-      <TriggerPipelineOnCallback callback={setTrigger} />
-      <CallbackOnPipe callback={mockCallBack} />
-      <CallbackOnPipe callback={() => new Promise((resolve) => {
-        resolver = resolve
-      })}
-      />
-      <CallbackOnPipe callback={mockCallBack} />
-      <WhenIsNotPiping>test</WhenIsNotPiping>
-    </Pipeline>
+    <div data-testid="wrapper">
+      <Pipeline>
+        <TriggerPipelineOnCallback callback={setTrigger} />
+        <CallbackOnPipe callback={mockCallBack} />
+        <CallbackOnPipe callback={() => new Promise((resolve) => {
+          resolver = resolve
+        })}
+        />
+        <CallbackOnPipe callback={mockCallBack} />
+        <WhenIsNotPiping>test</WhenIsNotPiping>
+      </Pipeline>
+    </div>
   )
 
-  await act(async () => wrapper.update())
+  expect(screen.getByTestId('wrapper')).toHaveTextContent('test');
 
-  expect(wrapper.text()).toEqual('test')
-
-  act(() => {
+  await act(() => {
     trigger()
   })
 
-  await act(async () => wrapper.update())
-
-  expect(wrapper.text()).toEqual('')
+  expect(screen.getByTestId('wrapper')).toHaveTextContent('');
   expect(mockCallBack.mock.calls.length).toEqual(1)
 
   await act(async () => resolver())
-  await act(async () => wrapper.update())
 
-  expect(wrapper.text()).toEqual('test')
+  expect(screen.getByTestId('wrapper')).toHaveTextContent('test');
   expect(mockCallBack.mock.calls.length).toEqual(2)
 })

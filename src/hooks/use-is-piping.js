@@ -4,13 +4,14 @@ import usePipeline from './use-pipeline'
 export default function useIsPiping () {
   const pipeline = usePipeline()
 
-  if (pipeline === null) {
-    throw new Error('useIsPiping hook are used outside the scope of a pipeline')
-  }
-
-  const [value, setValue] = React.useState(pipeline.isPiping)
+  const [value, setValue] = React.useState(pipeline ? pipeline.isPiping : false)
 
   React.useEffect(() => {
+
+    if(!pipeline) {
+      return
+    }
+
     const disposer = pipeline.onIsPipingChange((isPipingValue) => {
       setValue(isPipingValue)
     })
