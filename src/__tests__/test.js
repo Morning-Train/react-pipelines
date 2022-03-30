@@ -1,6 +1,7 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import {render, screen} from '@testing-library/react'
 
 it('renders without crashing', () => {
-  shallow(<div>test</div>)
+  render(<div>test</div>)
+  expect(screen.getAllByRole('div')).toHaveTextContent('test')
 })
