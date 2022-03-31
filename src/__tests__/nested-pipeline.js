@@ -1,11 +1,12 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import '@testing-library/jest-dom/extend-expect'
+import {render, screen} from '@testing-library/react'
 import {
   Pipeline, NestedPipeline, TriggerPipelineOnCallback, CallbackOnPipe
 } from '..'
 
 it('renders NestedPipeline without crashing', () => {
-  shallow(<NestedPipeline>test</NestedPipeline>)
+  render(<NestedPipeline>test</NestedPipeline>)
 })
 
 it('nested pipeline runs in pipeline', () => {
@@ -17,7 +18,7 @@ it('nested pipeline runs in pipeline', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <NestedPipeline>
@@ -45,7 +46,7 @@ it('nested pipeline runs in pipeline using base pipeline', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <Pipeline nested>

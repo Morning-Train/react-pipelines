@@ -1,11 +1,13 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import '@testing-library/jest-dom/extend-expect'
+import {render, screen} from '@testing-library/react'
 import {
   AsyncPipeline, CallbackOnPipe, Pipeline, TriggerPipelineOnCallback
 } from '..'
 
 it('renders AsyncPipeline without crashing', () => {
-  shallow(<AsyncPipeline>test</AsyncPipeline>)
+  render(<AsyncPipeline>test</AsyncPipeline>)
+  expect(screen.getByText(/test/i)).toHaveTextContent('test')
 })
 
 it('async pipeline runs all pipes (3)', () => {
@@ -17,7 +19,7 @@ it('async pipeline runs all pipes (3)', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <AsyncPipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={mockCallBack} />
@@ -43,7 +45,7 @@ it('async pipeline runs all pipes (3) using base pipeline', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline async>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={mockCallBack} />
@@ -69,7 +71,7 @@ it('async pipeline runs all pipes (5)', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <AsyncPipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={mockCallBack} />
@@ -97,7 +99,7 @@ it('async pipeline provides payload (3)', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <AsyncPipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={() => Promise.resolve({ value: 1 })} />
@@ -124,7 +126,7 @@ it('async pipeline runs when no pipes are provided', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <AsyncPipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
     </AsyncPipeline>

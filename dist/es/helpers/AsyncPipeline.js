@@ -1,6 +1,6 @@
+import _slicedToArray from '@babel/runtime/helpers/slicedToArray';
 import React from 'react';
 import PipelineContext from '../contexts/PipelineContext.js';
-import { slicedToArray as _slicedToArray } from '../_virtual/_rollupPluginBabelHelpers.js';
 import parallelPipelineTrigger from '../utilities/parallelPipelineTrigger.js';
 import useEventListeners from '../hooks/use-event-listeners.js';
 
@@ -71,5 +71,5 @@ function AsyncPipeline(_ref) {
   }, children);
 }
 
-export default AsyncPipeline;
+export { AsyncPipeline as default };
 //# sourceMappingURL=AsyncPipeline.js.map

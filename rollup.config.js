@@ -24,7 +24,7 @@ export default {
       preserveModules: true
     }
   ],
-  external: id => id.includes('lodash') || ['react', 'prop-types'].includes(id),
+  external: id => id.includes('@babel/runtime') || id.includes('lodash') || ['react', 'prop-types'].includes(id),
   plugins: [
     cleaner({
       targets: [
@@ -42,6 +42,7 @@ export default {
     url(),
     babel({
       exclude: 'node_modules/**',
+      babelHelpers: 'runtime',
       plugins: []
     }),
     resolve(),

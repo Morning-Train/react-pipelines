@@ -1,8 +1,9 @@
+import _objectWithoutProperties from '@babel/runtime/helpers/objectWithoutProperties';
 import React from 'react';
-import { objectWithoutProperties as _objectWithoutProperties } from '../_virtual/_rollupPluginBabelHelpers.js';
 import Pipeline from './Pipeline.js';
 import TriggerPipelineOnClick from '../triggers/TriggerPipelineOnClick.js';
 
+var _excluded = ["trigger", "async", "nested", "children"];
 function OnClickPipeline(_ref) {
   var trigger = _ref.trigger,
       _ref$async = _ref.async,
@@ -10,7 +11,7 @@ function OnClickPipeline(_ref) {
       _ref$nested = _ref.nested,
       nested = _ref$nested === void 0 ? false : _ref$nested,
       children = _ref.children,
-      forwardProps = _objectWithoutProperties(_ref, ["trigger", "async", "nested", "children"]);
+      forwardProps = _objectWithoutProperties(_ref, _excluded);
 
   return /*#__PURE__*/React.createElement(Pipeline, {
     async: async,
@@ -18,5 +19,5 @@ function OnClickPipeline(_ref) {
   }, /*#__PURE__*/React.createElement(TriggerPipelineOnClick, forwardProps, trigger), children);
 }
 
-export default OnClickPipeline;
+export { OnClickPipeline as default };
 //# sourceMappingURL=OnClickPipeline.js.map

@@ -1,9 +1,11 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import '@testing-library/jest-dom/extend-expect'
+import {render, screen} from '@testing-library/react'
 import { CallbackOnPipe, Pipeline, TriggerPipelineOnCallback } from '..'
 
 it('renders Pipeline without crashing', () => {
-  shallow(<Pipeline>test</Pipeline>)
+  render(<Pipeline>test</Pipeline>)
+  expect(screen.getByText(/test/i)).toHaveTextContent('test')
 })
 
 it('pipeline runs in correct order', () => {
@@ -13,7 +15,7 @@ it('pipeline runs in correct order', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={(p) => Promise.resolve(p)} />
@@ -36,7 +38,7 @@ it('pipeline runs in correct order - reversed', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={(p) => Promise.resolve(p)} />
@@ -59,7 +61,7 @@ it('pipeline runs when no pipes are provided', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
     </Pipeline>

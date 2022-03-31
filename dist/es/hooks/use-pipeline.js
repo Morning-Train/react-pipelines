@@ -5,5 +5,5 @@ function usePipeline() {
   return React.useContext(PipelineContext);
 }
 
-export default usePipeline;
+export { usePipeline as default };
 //# sourceMappingURL=use-pipeline.js.map

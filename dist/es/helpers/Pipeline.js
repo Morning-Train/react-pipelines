@@ -1,7 +1,7 @@
 import React from 'react';
-import AsyncPipeline from './AsyncPipeline.js';
 import SequentialPipeline from './SequentialPipeline.js';
 import NestedAsyncPipeline from './NestedAsyncPipeline.js';
+import AsyncPipeline from './AsyncPipeline.js';
 import NestedPipeline from './NestedPipeline.js';
 
 function Pipeline(_ref) {
@@ -26,5 +26,5 @@ function Pipeline(_ref) {
   return /*#__PURE__*/React.createElement(SequentialPipeline, null, children);
 }
 
-export default Pipeline;
+export { Pipeline as default };
 //# sourceMappingURL=Pipeline.js.map
