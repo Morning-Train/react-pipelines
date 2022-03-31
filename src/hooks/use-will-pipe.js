@@ -8,10 +8,15 @@ export default function useWillPipe (callback, dependencies = []) {
   const uuidRef = React.useRef(uniqueId('pipe_'))
 
   React.useEffect(() => {
+
+    if(!pipeline) {
+      return
+    }
+
     const disposer = pipeline.pipe(uuidRef.current, callback)
 
     return () => {
       disposer()
     }
-  }, dependencies)
+  }, [pipeline, ...dependencies])
 }

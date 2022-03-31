@@ -1,8 +1,8 @@
+import _slicedToArray from '@babel/runtime/helpers/slicedToArray';
 import React from 'react';
 import PipelineContext from '../contexts/PipelineContext.js';
-import { slicedToArray as _slicedToArray } from '../_virtual/_rollupPluginBabelHelpers.js';
-import useEventListeners from '../hooks/use-event-listeners.js';
 import sequentialPipelineTrigger from '../utilities/sequentialPipelineTrigger.js';
+import useEventListeners from '../hooks/use-event-listeners.js';
 
 function SequentialPipeline(_ref) {
   var children = _ref.children;
@@ -71,5 +71,5 @@ function SequentialPipeline(_ref) {
   }, children);
 }
 
-export default SequentialPipeline;
+export { SequentialPipeline as default };
 //# sourceMappingURL=SequentialPipeline.js.map

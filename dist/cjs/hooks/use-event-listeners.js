@@ -7,7 +7,7 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function useEventListeners() {
-  var callbacks_ref = React__default['default'].useRef([]);
+  var callbacks_ref = React__default["default"].useRef([]);
   var callbacks = callbacks_ref.current;
 
   var trigger = function trigger() {

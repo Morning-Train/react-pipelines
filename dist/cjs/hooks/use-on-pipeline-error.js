@@ -9,7 +9,11 @@ var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function useOnPipelineError(callback) {
   var pipeline = usePipeline();
-  React__default['default'].useEffect(function () {
+  React__default["default"].useEffect(function () {
+    if (!pipeline) {
+      return;
+    }
+
     var disposer = pipeline.onError(function (error) {
       if (typeof callback === 'function') {
         callback(error);
@@ -18,7 +22,7 @@ function useOnPipelineError(callback) {
     return function () {
       disposer();
     };
-  });
+  }, [pipeline]);
 }
 
 module.exports = useOnPipelineError;

@@ -38,5 +38,5 @@ function useEventListeners() {
   return [trigger, addEventListener, removeEventListener];
 }
 
-export default useEventListeners;
+export { useEventListeners as default };
 //# sourceMappingURL=use-event-listeners.js.map

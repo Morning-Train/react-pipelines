@@ -1,9 +1,11 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import '@testing-library/jest-dom/extend-expect'
+import {render, screen} from '@testing-library/react'
 import { CallbackOnPipe, ErrorPipeline, Pipeline, TriggerPipelineOnCallback } from '..'
 
 it('renders ErrorPipeline without crashing', () => {
-  shallow(<ErrorPipeline>test</ErrorPipeline>)
+  render(<ErrorPipeline>test</ErrorPipeline>)
+  expect(screen.getByText(/test/i)).toHaveTextContent('test')
 })
 
 it('do not run error pipeline when there is no error', () => {
@@ -15,7 +17,7 @@ it('do not run error pipeline when there is no error', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={mockCallBack} />
@@ -42,7 +44,7 @@ it('do run error pipeline when there is error', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={(payload) => {

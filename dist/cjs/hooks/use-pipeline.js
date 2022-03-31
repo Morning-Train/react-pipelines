@@ -8,7 +8,7 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function usePipeline() {
-  return React__default['default'].useContext(PipelineContext['default']);
+  return React__default["default"].useContext(PipelineContext);
 }
 
 module.exports = usePipeline;

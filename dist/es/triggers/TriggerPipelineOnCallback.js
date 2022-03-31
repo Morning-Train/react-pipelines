@@ -1,6 +1,6 @@
 import React from 'react';
-import usePipeline from '../hooks/use-pipeline.js';
 import PropTypes from 'prop-types';
+import usePipeline from '../hooks/use-pipeline.js';
 
 function TriggerPipelineOnCallback(_ref) {
   var callback = _ref.callback;
@@ -18,5 +18,5 @@ TriggerPipelineOnCallback.propTypes = {
   callback: PropTypes.func.isRequired
 };
 
-export default TriggerPipelineOnCallback;
+export { TriggerPipelineOnCallback as default };
 //# sourceMappingURL=TriggerPipelineOnCallback.js.map

@@ -1,5 +1,6 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import '@testing-library/jest-dom/extend-expect'
+import {render, screen} from '@testing-library/react'
 import { CallbackOnPipe, Pipeline, TriggerPipelineOnCallback } from '../..'
 
 it('Can trigger pipeline on callback once', () => {
@@ -11,7 +12,7 @@ it('Can trigger pipeline on callback once', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={mockCallBack} />
@@ -35,7 +36,7 @@ it('Can trigger pipeline on callback twice', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={mockCallBack} />
@@ -58,7 +59,7 @@ it('Can trigger pipeline on callback with custom payload', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={(p) => Promise.resolve(p)} />

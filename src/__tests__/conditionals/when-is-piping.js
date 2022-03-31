@@ -1,16 +1,17 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import '@testing-library/jest-dom/extend-expect'
+import {render, screen, waitFor} from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import {
   AsyncPipeline, CallbackOnPipe, Pipeline, TriggerPipelineOnCallback, WhenIsPiping
 } from '../..'
 
-it('crashes when rendering WhenIsPiping without pipeline', () => {
-  expect(() => shallow(<WhenIsPiping>test</WhenIsPiping>)).toThrow()
+it('renders without crashing', () => {
+  render(<WhenIsPiping>test</WhenIsPiping>)
 })
 
 it('renders WhenIsPiping inside pipeline without crashing', () => {
-  mount(
+  render(
     <Pipeline>
       <WhenIsPiping>test</WhenIsPiping>
     </Pipeline>
@@ -18,7 +19,7 @@ it('renders WhenIsPiping inside pipeline without crashing', () => {
 })
 
 it('renders WhenIsPiping inside async pipeline without crashing', () => {
-  mount(
+  render(
     <AsyncPipeline>
       <WhenIsPiping>test</WhenIsPiping>
     </AsyncPipeline>
@@ -38,35 +39,32 @@ it('WhenIsPiping change state when piping', async () => {
 
   expect.assertions(5)
 
-  const wrapper = mount(
-    <Pipeline>
-      <TriggerPipelineOnCallback callback={setTrigger} />
-      <CallbackOnPipe callback={mockCallBack} />
-      <CallbackOnPipe callback={() => new Promise((resolve) => {
-        resolver = resolve
-      })}
-      />
-      <CallbackOnPipe callback={mockCallBack} />
-      <WhenIsPiping>test</WhenIsPiping>
-    </Pipeline>
+  render(
+    <div data-testid="wrapper">
+      <Pipeline>
+        <TriggerPipelineOnCallback callback={setTrigger} />
+        <CallbackOnPipe callback={mockCallBack} />
+        <CallbackOnPipe callback={() => new Promise((resolve) => {
+          resolver = resolve
+        })}
+        />
+        <CallbackOnPipe callback={mockCallBack} />
+        <WhenIsPiping>test</WhenIsPiping>
+      </Pipeline>
+    </div>
   )
 
-  await act(async () => wrapper.update())
+  expect(screen.getByTestId('wrapper')).toHaveTextContent('');
 
-  expect(wrapper.text()).toEqual('')
-
-  act(() => {
+  await act(() => {
     trigger()
   })
 
-  await act(async () => wrapper.update())
-
-  expect(wrapper.text()).toEqual('test')
+  expect(screen.getByTestId('wrapper')).toHaveTextContent('test');
   expect(mockCallBack.mock.calls.length).toEqual(1)
 
   await act(async () => resolver())
-  await act(async () => wrapper.update())
 
-  expect(wrapper.text()).toEqual('')
+  expect(screen.getByTestId('wrapper')).toHaveTextContent('');
   expect(mockCallBack.mock.calls.length).toEqual(2)
 })

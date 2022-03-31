@@ -1,11 +1,13 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import '@testing-library/jest-dom/extend-expect'
+import {render, screen} from '@testing-library/react'
 import {
   CallbackOnPipe, NestedAsyncPipeline, Pipeline, TriggerPipelineOnCallback
 } from '..'
 
 it('renders AsyncNestedPipeline without crashing', () => {
-  shallow(<NestedAsyncPipeline>test</NestedAsyncPipeline>)
+  render(<NestedAsyncPipeline>test</NestedAsyncPipeline>)
+  expect(screen.getByText(/test/i)).toHaveTextContent('test')
 })
 
 it('AsyncNestedPipeline runs in pipeline', () => {
@@ -17,7 +19,7 @@ it('AsyncNestedPipeline runs in pipeline', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={() => Promise.resolve({ some: 'test' })} />
@@ -49,7 +51,7 @@ it('AsyncNestedPipeline runs in pipeline using base pipeline', () => {
     trigger = callback
   }
 
-  mount(
+  render(
     <Pipeline>
       <TriggerPipelineOnCallback callback={setTrigger} />
       <CallbackOnPipe callback={() => Promise.resolve({ some: 'test' })} />

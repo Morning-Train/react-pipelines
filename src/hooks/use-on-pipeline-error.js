@@ -5,6 +5,11 @@ export default function useOnPipelineError (callback) {
   const pipeline = usePipeline()
 
   React.useEffect(() => {
+
+    if(!pipeline) {
+      return
+    }
+
     const disposer = pipeline.onError((error) => {
       if (typeof callback === 'function') {
         callback(error)
@@ -14,5 +19,5 @@ export default function useOnPipelineError (callback) {
     return () => {
       disposer()
     }
-  })
+  }, [pipeline])
 }
