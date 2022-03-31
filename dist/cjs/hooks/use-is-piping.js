@@ -1,26 +1,27 @@
 'use strict';
 
+var _slicedToArray = require('@babel/runtime/helpers/slicedToArray');
 var React = require('react');
-var _rollupPluginBabelHelpers = require('../_virtual/_rollupPluginBabelHelpers.js');
 var usePipeline = require('./use-pipeline.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
+var _slicedToArray__default = /*#__PURE__*/_interopDefaultLegacy(_slicedToArray);
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function useIsPiping() {
   var pipeline = usePipeline();
 
-  if (pipeline === null) {
-    throw new Error('useIsPiping hook are used outside the scope of a pipeline');
-  }
-
-  var _React$useState = React__default['default'].useState(pipeline.isPiping),
-      _React$useState2 = _rollupPluginBabelHelpers.slicedToArray(_React$useState, 2),
+  var _React$useState = React__default["default"].useState(pipeline ? pipeline.isPiping : false),
+      _React$useState2 = _slicedToArray__default["default"](_React$useState, 2),
       value = _React$useState2[0],
       setValue = _React$useState2[1];
 
-  React__default['default'].useEffect(function () {
+  React__default["default"].useEffect(function () {
+    if (!pipeline) {
+      return;
+    }
+
     var disposer = pipeline.onIsPipingChange(function (isPipingValue) {
       setValue(isPipingValue);
     });

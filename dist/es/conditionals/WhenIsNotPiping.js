@@ -1,5 +1,5 @@
+import _slicedToArray from '@babel/runtime/helpers/slicedToArray';
 import 'react';
-import { slicedToArray as _slicedToArray } from '../_virtual/_rollupPluginBabelHelpers.js';
 import useIsPiping from '../hooks/use-is-piping.js';
 
 function WhenIsNotPiping(_ref) {
@@ -12,5 +12,5 @@ function WhenIsNotPiping(_ref) {
   return isPiping === false ? children : null;
 }
 
-export default WhenIsNotPiping;
+export { WhenIsNotPiping as default };
 //# sourceMappingURL=WhenIsNotPiping.js.map

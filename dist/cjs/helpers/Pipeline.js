@@ -1,9 +1,9 @@
 'use strict';
 
 var React = require('react');
-var AsyncPipeline = require('./AsyncPipeline.js');
 var SequentialPipeline = require('./SequentialPipeline.js');
 var NestedAsyncPipeline = require('./NestedAsyncPipeline.js');
+var AsyncPipeline = require('./AsyncPipeline.js');
 var NestedPipeline = require('./NestedPipeline.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
@@ -19,17 +19,17 @@ function Pipeline(_ref) {
 
   if (async) {
     if (nested) {
-      return /*#__PURE__*/React__default['default'].createElement(NestedAsyncPipeline, null, children);
+      return /*#__PURE__*/React__default["default"].createElement(NestedAsyncPipeline, null, children);
     } else {
-      return /*#__PURE__*/React__default['default'].createElement(AsyncPipeline, null, children);
+      return /*#__PURE__*/React__default["default"].createElement(AsyncPipeline, null, children);
     }
   }
 
   if (nested) {
-    return /*#__PURE__*/React__default['default'].createElement(NestedPipeline, null, children);
+    return /*#__PURE__*/React__default["default"].createElement(NestedPipeline, null, children);
   }
 
-  return /*#__PURE__*/React__default['default'].createElement(SequentialPipeline, null, children);
+  return /*#__PURE__*/React__default["default"].createElement(SequentialPipeline, null, children);
 }
 
 module.exports = Pipeline;

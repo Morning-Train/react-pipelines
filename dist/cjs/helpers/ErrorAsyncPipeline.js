@@ -1,9 +1,9 @@
 'use strict';
 
 var React = require('react');
-var useOnPipelineError = require('../hooks/use-on-pipeline-error.js');
 var AsyncPipeline = require('./AsyncPipeline.js');
 var TriggerPipelineOnCallback = require('../triggers/TriggerPipelineOnCallback.js');
+var useOnPipelineError = require('../hooks/use-on-pipeline-error.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -11,7 +11,7 @@ var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function ErrorAsyncPipeline(_ref) {
   var children = _ref.children;
-  var callbackRef = React__default['default'].useRef(null);
+  var callbackRef = React__default["default"].useRef(null);
 
   var updateCallbackRef = function updateCallbackRef(callback) {
     callbackRef.current = callback;
@@ -22,7 +22,7 @@ function ErrorAsyncPipeline(_ref) {
       error: error
     });
   });
-  return /*#__PURE__*/React__default['default'].createElement(AsyncPipeline, null, /*#__PURE__*/React__default['default'].createElement(TriggerPipelineOnCallback, {
+  return /*#__PURE__*/React__default["default"].createElement(AsyncPipeline, null, /*#__PURE__*/React__default["default"].createElement(TriggerPipelineOnCallback, {
     callback: updateCallbackRef
   }), children);
 }

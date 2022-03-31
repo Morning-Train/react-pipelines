@@ -1,8 +1,8 @@
 'use strict';
 
 var React = require('react');
-var usePipeline = require('../hooks/use-pipeline.js');
 var PropTypes = require('prop-types');
+var usePipeline = require('../hooks/use-pipeline.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -16,7 +16,7 @@ function TriggerPipelineOnClick(_ref) {
       _ref$preventDefault = _ref.preventDefault,
       preventDefault = _ref$preventDefault === void 0 ? true : _ref$preventDefault;
   var pipeline = usePipeline();
-  var isCurrentlyPipingRef = React__default['default'].useRef(false);
+  var isCurrentlyPipingRef = React__default["default"].useRef(false);
 
   var handleClick = function handleClick(e) {
     if (e && preventDefault === true) {
@@ -49,16 +49,16 @@ function TriggerPipelineOnClick(_ref) {
     });
   };
 
-  return React__default['default'].Children.map(children, function (child) {
-    return /*#__PURE__*/React__default['default'].cloneElement(child, {
+  return React__default["default"].Children.map(children, function (child) {
+    return /*#__PURE__*/React__default["default"].cloneElement(child, {
       onClick: handleClick
     });
   });
 }
 
 TriggerPipelineOnClick.propTypes = {
-  onlyTriggerWhenIdle: PropTypes__default['default'].bool,
-  preventDefault: PropTypes__default['default'].bool
+  onlyTriggerWhenIdle: PropTypes__default["default"].bool,
+  preventDefault: PropTypes__default["default"].bool
 };
 
 module.exports = TriggerPipelineOnClick;

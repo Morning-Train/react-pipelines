@@ -22,5 +22,5 @@ function parallelPipelineTrigger(pipesOrder, pipes) {
   };
 }
 
-export default parallelPipelineTrigger;
+export { parallelPipelineTrigger as default };
 //# sourceMappingURL=parallelPipelineTrigger.js.map

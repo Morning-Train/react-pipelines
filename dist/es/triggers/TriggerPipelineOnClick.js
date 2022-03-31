@@ -1,6 +1,6 @@
 import React from 'react';
-import usePipeline from '../hooks/use-pipeline.js';
 import PropTypes from 'prop-types';
+import usePipeline from '../hooks/use-pipeline.js';
 
 function TriggerPipelineOnClick(_ref) {
   var children = _ref.children,
@@ -54,5 +54,5 @@ TriggerPipelineOnClick.propTypes = {
   preventDefault: PropTypes.bool
 };
 
-export default TriggerPipelineOnClick;
+export { TriggerPipelineOnClick as default };
 //# sourceMappingURL=TriggerPipelineOnClick.js.map

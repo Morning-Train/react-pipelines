@@ -1,9 +1,12 @@
+import _defineProperty from '@babel/runtime/helpers/defineProperty';
 import React from 'react';
-import { objectSpread2 as _objectSpread2 } from '../_virtual/_rollupPluginBabelHelpers.js';
 import useWillPipe from '../hooks/use-will-pipe.js';
-import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback.js';
 import Pipeline from './Pipeline.js';
+import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback.js';
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function NestedPipeline(_ref) {
   var children = _ref.children;
   var callbackRef = React.useRef(null);
@@ -16,7 +19,7 @@ function NestedPipeline(_ref) {
     return new Promise(function (resolve, reject) {
       Promise.resolve(callbackRef.current(payload)).then(function () {
         var p = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-        resolve(_objectSpread2(_objectSpread2({}, payload), p));
+        resolve(_objectSpread(_objectSpread({}, payload), p));
       }).catch(function (err) {
         reject(err);
       });
@@ -27,5 +30,5 @@ function NestedPipeline(_ref) {
   }), children);
 }
 
-export default NestedPipeline;
+export { NestedPipeline as default };
 //# sourceMappingURL=NestedPipeline.js.map

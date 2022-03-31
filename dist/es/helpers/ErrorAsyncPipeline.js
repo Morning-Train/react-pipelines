@@ -1,7 +1,7 @@
 import React from 'react';
-import useOnPipelineError from '../hooks/use-on-pipeline-error.js';
 import AsyncPipeline from './AsyncPipeline.js';
 import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback.js';
+import useOnPipelineError from '../hooks/use-on-pipeline-error.js';
 
 function ErrorAsyncPipeline(_ref) {
   var children = _ref.children;
@@ -21,5 +21,5 @@ function ErrorAsyncPipeline(_ref) {
   }), children);
 }
 
-export default ErrorAsyncPipeline;
+export { ErrorAsyncPipeline as default };
 //# sourceMappingURL=ErrorAsyncPipeline.js.map

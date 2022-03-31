@@ -1,20 +1,20 @@
+import _slicedToArray from '@babel/runtime/helpers/slicedToArray';
 import React from 'react';
-import { slicedToArray as _slicedToArray } from '../_virtual/_rollupPluginBabelHelpers.js';
 import usePipeline from './use-pipeline.js';
 
 function useIsPiping() {
   var pipeline = usePipeline();
 
-  if (pipeline === null) {
-    throw new Error('useIsPiping hook are used outside the scope of a pipeline');
-  }
-
-  var _React$useState = React.useState(pipeline.isPiping),
+  var _React$useState = React.useState(pipeline ? pipeline.isPiping : false),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       value = _React$useState2[0],
       setValue = _React$useState2[1];
 
   React.useEffect(function () {
+    if (!pipeline) {
+      return;
+    }
+
     var disposer = pipeline.onIsPipingChange(function (isPipingValue) {
       setValue(isPipingValue);
     });
@@ -25,5 +25,5 @@ function useIsPiping() {
   return [value, setValue];
 }
 
-export default useIsPiping;
+export { useIsPiping as default };
 //# sourceMappingURL=use-is-piping.js.map

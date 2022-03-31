@@ -22,5 +22,5 @@ function sequentialPipelineTrigger(pipesOrder, pipes) {
   };
 }
 
-export default sequentialPipelineTrigger;
+export { sequentialPipelineTrigger as default };
 //# sourceMappingURL=sequentialPipelineTrigger.js.map
