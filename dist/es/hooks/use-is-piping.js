@@ -5,22 +5,22 @@ import usePipeline from './use-pipeline.js';
 function useIsPiping() {
   var pipeline = usePipeline();
 
-  if (pipeline === null) {
-    throw new Error('useIsPiping hook are used outside the scope of a pipeline');
-  }
-
   var _React$useState = React.useState(pipeline.isPiping),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       value = _React$useState2[0],
       setValue = _React$useState2[1];
 
   React.useEffect(function () {
-    var disposer = pipeline.onIsPipingChange(function (isPipingValue) {
-      setValue(isPipingValue);
-    });
-    return function () {
-      disposer();
-    };
+    setValue(pipeline ? pipeline.isPiping : false);
+
+    if (pipeline) {
+      var disposer = pipeline.onIsPipingChange(function (isPipingValue) {
+        setValue(isPipingValue);
+      });
+      return function () {
+        disposer();
+      };
+    }
   }, [pipeline]);
   return [value, setValue];
 }

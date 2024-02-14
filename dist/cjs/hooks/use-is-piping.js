@@ -11,22 +11,22 @@ var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 function useIsPiping() {
   var pipeline = usePipeline();
 
-  if (pipeline === null) {
-    throw new Error('useIsPiping hook are used outside the scope of a pipeline');
-  }
-
   var _React$useState = React__default['default'].useState(pipeline.isPiping),
       _React$useState2 = _rollupPluginBabelHelpers.slicedToArray(_React$useState, 2),
       value = _React$useState2[0],
       setValue = _React$useState2[1];
 
   React__default['default'].useEffect(function () {
-    var disposer = pipeline.onIsPipingChange(function (isPipingValue) {
-      setValue(isPipingValue);
-    });
-    return function () {
-      disposer();
-    };
+    setValue(pipeline ? pipeline.isPiping : false);
+
+    if (pipeline) {
+      var disposer = pipeline.onIsPipingChange(function (isPipingValue) {
+        setValue(isPipingValue);
+      });
+      return function () {
+        disposer();
+      };
+    }
   }, [pipeline]);
   return [value, setValue];
 }
