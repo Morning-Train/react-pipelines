@@ -1,7 +1,7 @@
 import React from 'react'
 import useWillPipe from '../hooks/use-will-pipe'
-import Pipeline from './Pipeline'
 import TriggerPipelineOnCallback from '../triggers/TriggerPipelineOnCallback'
+import SequentialPipeline from "./SequentialPipeline";
 
 export default function NestedPipeline ({ children }) {
   const callbackRef = React.useRef(null)
@@ -21,9 +21,9 @@ export default function NestedPipeline ({ children }) {
   }))
 
   return (
-    <Pipeline>
+    <SequentialPipeline>
       <TriggerPipelineOnCallback callback={updateCallbackRef} />
       {children}
-    </Pipeline>
+    </SequentialPipeline>
   )
 }
