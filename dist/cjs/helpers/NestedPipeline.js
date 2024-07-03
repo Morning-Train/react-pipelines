@@ -3,8 +3,8 @@
 var _defineProperty = require('@babel/runtime/helpers/defineProperty');
 var React = require('react');
 var useWillPipe = require('../hooks/use-will-pipe.js');
-var Pipeline = require('./Pipeline.js');
 var TriggerPipelineOnCallback = require('../triggers/TriggerPipelineOnCallback.js');
+var SequentialPipeline = require('./SequentialPipeline.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -32,7 +32,7 @@ function NestedPipeline(_ref) {
       });
     });
   });
-  return /*#__PURE__*/React__default["default"].createElement(Pipeline, null, /*#__PURE__*/React__default["default"].createElement(TriggerPipelineOnCallback, {
+  return /*#__PURE__*/React__default["default"].createElement(SequentialPipeline, null, /*#__PURE__*/React__default["default"].createElement(TriggerPipelineOnCallback, {
     callback: updateCallbackRef
   }), children);
 }
